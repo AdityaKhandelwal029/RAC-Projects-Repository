@@ -1,0 +1,5652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+       
+
+	   <extension
+         point="org.eclipse.ui.menus">         
+         <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="Manufacturing"
+               mnemonic="D"
+               id="Manufacturing">
+            <separator
+                  name="ManufacturingGroup">
+            </separator>
+            
+            <visibleWhen>
+            	<or>
+					<reference
+						definitionId="com.teamcenter.rac.ui.inMainPerspective">
+					</reference>
+					<reference
+						definitionId="com.teamcenter.rac.pse.inMainView">
+					</reference>
+				</or>
+			</visibleWhen>
+			
+         </menu>
+        </menuContribution>
+
+	<menuContribution
+            locationURI="menu:Manufacturing?after=additions">
+            <!-- Added by Deepti TZ1.72 -->
+              <menu
+               label="MBOM"
+               mnemonic="D"
+               id="MBOM">
+               <separator name="MBOMGroup"/>
+             </menu>
+			      
+            <menu
+               label="Planning"
+               mnemonic="D"
+               id="APL">              
+               <separator name="APLGroup"/>                 
+             </menu>
+                     
+			  <menu
+               label="Implementation"
+               mnemonic="D"
+               id="STD">              
+               <separator name="STDGroup"/>                 
+             </menu>
+
+			 <menu
+               label="PE"
+               mnemonic="D"
+               id="PE">
+               <separator name="PEGroup"/>
+             </menu>
+             
+             <menu
+               label="CTED"
+               mnemonic="D"
+               id="CTED">
+               <separator name="CTEDGroup"/>
+             </menu>
+             
+             <menu
+               label="MBPA"
+               mnemonic="D"
+               id="MBPA">
+               <separator name="MBPAGroup"/>
+             </menu>
+             <menu
+               label="Reports"
+               mnemonic="D"
+               id="Reports">              
+               <separator name="ReportsGroup"/>                 
+             </menu>
+             <menu
+               label="Query"
+               mnemonic="Q"
+               id="Queryp">              
+               <separator name="QueryGroup"/>                 
+             </menu> 
+             
+             <command
+                   commandId="StructureConfig"
+                   icon="icons/structconfig.jpg"
+                   id="StructureConfig"
+                   mnemonic="S"
+                   style="push">
+                <visibleWhen>
+                   <reference
+                         definitionId="com.teamcenter.rac.pse.inMainView">
+                   </reference>
+                </visibleWhen>
+             </command>
+             
+	</menuContribution>
+	
+	
+	 </extension> 
+	 
+	  
+	 <!-- Start MBOM Sub-Menu TZ1.72 Deepti-->              
+      <extension
+         point="org.eclipse.ui.menus">
+		<menuContribution
+				locationURI="menu:MBOM?after=additions">	 
+
+				 <menu
+				   label="Create SM/Assy" 
+					icon="icons/create_16.png"
+				   mnemonic="D"
+				   id="CreateSM/Assy">
+				   <separator name="group3"/>
+					<command
+						  commandId="CreateModAssyCV"	
+						  icon="icons/moved_16.png" 
+						  mnemonic="S"
+						  id="CreateModAssyCV" style="push">
+						  <visibleWhen
+								checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CreateModAssyCV" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+						  </visibleWhen>
+					   </command>
+					   
+					   <command
+						  commandId="CreateGroupPrtMBOM"	
+						  icon="icons/moved_16.png" 
+						  mnemonic="S"
+						  id="CreateGroupPrtMBOM" style="push">
+						  <visibleWhen
+								checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CreateGroupPrtMBOM" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+						  </visibleWhen>
+					   </command>
+
+				   <command
+					 commandId="com.teamcenter.rac.tml.cvprod.ui.commands.SubModuleCreate"
+					 icon="icons/moduleIcon.png"
+					 id="com.teamcenter.rac.tml.cvprod.ui.commands.SubModuleCreate"
+					 label="SubModule"
+					 style="push">
+					  <visibleWhen
+							checkEnabled="false">
+						 <and>
+							<with
+								  variable="rac_command_suppression">
+							   <not>
+								  <iterate operator="or">
+												<equals value="com.teamcenter.rac.tml.cvprod.ui.commands.SubModuleCreate" />
+								  </iterate>
+							   </not>
+							</with>
+						 </and>
+					  </visibleWhen>
+				   </command>
+				   <command
+						 commandId="com.teamcenter.rac.tml.cvprod.ui.commands.ArchSubModCreate"
+						 icon="icons/archmoduleIcon.png"
+						 id="com.teamcenter.rac.tml.cvprod.ui.commands.ArchSubModCreate"
+						 label="Architecture SubModule"
+						 mnemonic="A"
+						 style="push">
+						 <visibleWhen
+							checkEnabled="false">
+						 <and>
+							<with
+								  variable="rac_command_suppression">
+							   <not>
+								  <iterate operator="or">
+												<equals value="com.teamcenter.rac.tml.cvprod.ui.commands.ArchSubModCreate" />
+								  </iterate>
+							   </not>
+							</with>
+						 </and>
+					  </visibleWhen>
+				   </command>
+				   </menu>
+
+				<!--MBOM implementation for CV TZ-1.72 START MBOM-->
+					<menu
+					   label="M-BOM (MB) DML"
+					   icon="icons/new_change_16.png"
+					   mnemonic="D"
+					   id="M-BOM(MB)DML">
+					   <separator name="group3"/>
+						<command
+								  commandId="MBOMTaskCreate"
+								  icon="icons/change_manager_16.png" 
+								  id="MBOMTaskCreate"
+								  mnemonic="S" style="push"> 				   
+									<visibleWhen
+											checkEnabled="false">
+											 <and>
+												<with
+													  variable="rac_command_suppression">
+												   <not>
+													  <iterate operator="or">
+																	<equals value="MBOMTaskCreate" />
+													  </iterate>
+												   </not>
+												</with>
+											 </and>
+									</visibleWhen> 
+							</command>
+							<command
+								  commandId="tm.mbom.tasksubmit.commands.TaskWFSubmitCommand"
+								  id="tm.mbom.tasksubmit.commands.TaskWFSubmitCommand"
+								   icon="icons/Workflow.png" 
+								  mnemonic="S"  style="push"> 				   
+										<visibleWhen
+												checkEnabled="false">
+												 <and>
+													<with
+														  variable="rac_command_suppression">
+													   <not>
+														  <iterate operator="or">
+																		<equals value="tm.mbom.tasksubmit.commands.TaskWFSubmitCommand" />
+														  </iterate>
+													   </not>
+													</with>
+												 </and>
+										</visibleWhen> 
+								</command>			
+					</menu>
+
+					 <menu
+					   label="MBOM Modification (MM) DML"
+					   icon="icons/new_change_16.png"
+					   mnemonic="D"
+					   id="MBOMModificatio(MM)DML">
+					   <separator name="group3"/>
+					   <command
+							  commandId="MBOMDMLCreate"                 
+							  icon="icons/create.jpg" 
+							  mnemonic="S"                 
+							  id="MBOMDMLCreate"  style="push"> 				   
+									<visibleWhen
+											checkEnabled="false">
+											 <and>
+												<with
+													  variable="rac_command_suppression">
+												   <not>
+													  <iterate operator="or">
+																	<equals value="MBOMDMLCreate" />
+													  </iterate>
+												   </not>
+												</with>
+											 </and>
+									</visibleWhen> 
+						   </command>				
+					</menu>
+
+					<menu
+					   label="NON-CAD Restructuring"
+						icon="icons/pseapplication_16.png" 
+					   mnemonic="D"
+					   id="NONCADRestructuring">
+					   <separator name="group3"/>
+
+						<command
+							  commandId="AddPart"
+							  icon="icons/assembly.jpg" 
+							  mnemonic="S"
+							  id="AddPart"  style="push"> 				   
+									<visibleWhen
+											checkEnabled="false">
+											 <and>
+												<with
+													  variable="rac_command_suppression">
+												   <not>
+													  <iterate operator="or">
+																	<equals value="AddPart" />
+													  </iterate>
+												   </not>
+												</with>
+											 </and>
+									</visibleWhen> 
+						   </command>
+						   <command
+								  commandId="DeletePart"
+								   icon="icons/assembly.jpg" 
+								  mnemonic="S" id="DeletePart"  style="push"> 				   
+									<visibleWhen
+											checkEnabled="false">
+											 <and>
+												<with
+													  variable="rac_command_suppression">
+												   <not>
+													  <iterate operator="or">
+																	<equals value="DeletePart" />
+													  </iterate>
+												   </not>
+												</with>
+											 </and>
+									</visibleWhen> 
+							</command>
+							<command
+								  commandId="CutPaste"
+								   icon="icons/assembly.jpg" 
+								  mnemonic="S" id="CutPaste"  style="push"> 				   
+									<visibleWhen
+											checkEnabled="false">
+											 <and>
+												<with
+													  variable="rac_command_suppression">
+												   <not>
+													  <iterate operator="or">
+																	<equals value="CutPaste" />
+													  </iterate>
+												   </not>
+												</with>
+											 </and>
+									</visibleWhen> 
+							</command>
+					</menu>
+
+					<!--<menu
+					   label="VC Restructuring"
+						icon="icons/pseapplication_16.png" 
+					   mnemonic="D"
+					   id="VCInterface">              
+					   <separator name="group3"/>  
+						  <command
+							  commandId="VCInterface"
+							   icon="icons/assembly.jpg" 
+							  mnemonic="S"
+							  id="VCInterface"  style="push"> 				   
+								<visibleWhen
+										checkEnabled="false">
+										 <and>
+											<with
+												  variable="rac_command_suppression">
+											   <not>
+												  <iterate operator="or">
+																<equals value="VCInterface" />
+												  </iterate>
+											   </not>
+											</with>
+										 </and>
+								</visibleWhen> 
+						   </command>
+					</menu>-->
+
+					<command
+					  commandId="VCInterface"
+					  icon="icons/pseapplication_16.png" 
+					  mnemonic="S"
+					  id="VCInterface"  style="push"> 				   
+						<visibleWhen
+								checkEnabled="false">
+								 <and>
+									<with
+										  variable="rac_command_suppression">
+									   <not>
+										  <iterate operator="or">
+														<equals value="VCInterface" />
+										  </iterate>
+									   </not>
+									</with>
+								 </and>
+						</visibleWhen> 
+				   </command>
+				   <menu
+					   label="VC Restructuring Automation MBOM"
+						icon="icons/pseapplication_16.png" 
+					   mnemonic="D"
+					   id="VC_restructuring">              
+					   <separator name="group3"/>  
+						  <command
+							  commandId="VC Restructuring Automation"
+							   icon="icons/assembly.jpg" 
+							  mnemonic="S"
+							  id="VC_restructuring_automation"  style="push"> 				   
+								<visibleWhen
+										checkEnabled="false">
+										 <and>
+											<with
+												  variable="rac_command_suppression">
+											   <not>
+												  <iterate operator="or">
+																<equals value="VC_restructuring_automation" />
+												  </iterate>
+											   </not>
+											</with>
+										 </and>
+								</visibleWhen> 
+						   </command>
+					</menu>-->
+				   
+				   	<command
+					  commandId="deleteDesignRevision"
+					  icon="icons/pseapplication_16.png" > 	
+					  <visibleWhen
+								checkEnabled="false">
+								<and>
+								<with
+									 variable="rac_command_suppression">
+									   <not>
+										  <iterate operator="or">
+														<equals value="deleteDesignRevision" />
+										  </iterate>
+									   </not>
+								</with>
+								
+								</and>
+								
+					</visibleWhen> 			   
+						
+				   </command>
+					
+					<menu
+					   label="MBOM GMDML"
+					   icon="icons/new_change_16.png"
+					   mnemonic="D"
+					   id="GMDMLcmd2">              
+					   <separator name="group3"/> 
+					    <command 
+						   commandId="GMDMLcmd2" 
+						   icon="icons/added_16.png" 
+						   mnemonic="S"
+						   id="GMDMLcmd2"  style="push"> 				   
+								<visibleWhen
+										checkEnabled="false">
+										 <and>
+											<with
+												  variable="rac_command_suppression">
+											   <not>
+												  <iterate operator="or">
+																<equals value="GMDMLcmd2" />
+												  </iterate>
+											   </not>
+											</with>
+										 </and>
+								</visibleWhen> 
+						   </command>         
+					</menu>
+
+					<menu
+					   label="Generate Report"
+					   icon="icons/reportapplication_16.png"
+					   mnemonic="D"
+					   id="MBOMRpt">              
+					   <separator name="group3"/> 
+					   <command
+							commandId="ModularMBOMCHK"
+							icon="icons/reportapplication_16.png"
+							mnemonic="S"
+							id="ModularMBOMCHK"  style="push"> 				   
+								<visibleWhen
+										checkEnabled="false">
+										 <and>
+											<with
+												  variable="rac_command_suppression">
+											   <not>
+												  <iterate operator="or">
+																<equals value="ModularMBOMCHK" />
+												  </iterate>
+											   </not>
+											</with>
+										 </and>
+								</visibleWhen>
+						 </command> 
+					 
+						 <!-- <command 
+							   commandId="EMBOMCRpt" 
+							   icon="icons/reportapplication_16.png"
+							   mnemonic="S"
+							   id="EMBOMCRpt"  style="push"> 				   
+									<visibleWhen
+											checkEnabled="false">
+											 <and>
+												<with
+													  variable="rac_command_suppression">
+												   <not>
+													  <iterate operator="or">
+																	<equals value="EMBOMCRpt" />
+													  </iterate>
+												   </not>
+												</with>
+											 </and>
+									</visibleWhen>
+							   </command> -->
+
+					</menu>
+	  <!-- End MBOM Sub-Menu TZ1.72-->       
+		</menuContribution>
+	</extension>
+	
+        <!--Start For Menu of APL -->
+       <extension
+         point="org.eclipse.ui.menus">
+		 
+        <!-- <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="APL"
+               mnemonic="D"
+               id="APL">
+            <separator
+                  name="APLGroup">
+            </separator>
+         </menu>
+        </menuContribution> -->
+         
+               
+       <menuContribution
+            locationURI="menu:APL?after=additions">    
+			  <!--Start Create APL PART-->
+            
+             <menu
+               label="Create Assembly"
+               mnemonic="D"
+			   icon="icons/create_16.png"
+               id="CRTAPLPART">              
+               <separator name="group3"/>  
+              <!--  <command
+                  commandId="com.teamcenter.rac.newBO"
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>   -->            
+                <command
+                  commandId="CreateModAssy"
+                  mnemonic="S"
+				  icon="icons/moved_16.png" 
+				   id="CreateModAssy"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CreateModAssy" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+
+			   <command
+                      commandId="CreateModAssyCV"
+					  icon="icons/moved_16.png"                      
+                      mnemonic="S" 
+					  id="CreateModAssyCV"  style="push"> 				   
+						<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CreateModAssyCV" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+                </command>
+                <command
+                  commandId="APL14Digit"
+                  mnemonic="S"
+				  icon="icons/moved_16.png" 
+				   id="APL14Digit"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="APL14Digit" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+             </menu>
+            <!--End Create APL PART-->
+           <menu
+               label="AM DML"
+               mnemonic="D"
+			   icon="icons/new_change_16.png"
+               id="AMDML">              
+               <separator name="group1"/>     <!--added by Priti-->             
+                <command
+                  commandId="APLDMLCreate"                 
+                  icon="icons/create.jpg" 
+                  mnemonic="S"                 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <!--Added by Priti TZ1.45 -->
+            <!--   <command
+                  commandId="APLDMLQuery"
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>	-->
+               <command
+                     commandId="com.teamcenter.rac.search.parameterizedsearch"
+                     id="com.teamcenter.aplmenu.apldmlqueryCommand"
+                     mnemonic="S">
+                  <parameter
+                        name="searchName"
+                        value="APLDML">
+                  </parameter>
+               </command>
+               <command
+                  commandId="APLDMLUpdate"                 
+                  icon="icons/create.jpg" 
+                  mnemonic="S"                 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+                <!--Added by Priti ENds TZ1.45 -->
+             </menu>
+                  
+              <menu
+               label="Perform Interplant restructuring"
+               mnemonic="D"
+			   icon="icons/new_change_16.png"
+               id="Perform Interplant restructuring">              
+               <separator name="group1"/>       
+                <command
+                  commandId="Perform Interplant restructuring"                 
+                  icon="icons/create.jpg" 
+                  mnemonic="S"                 
+                  id="com.teamcenter.aplmenu.views">
+               </command>
+               
+             </menu>
+             
+             <!--MBOM DML Creation -->
+            <!--Commented by Deepti TZ1.72 backend for CV Implementation -->
+            <!--<menu
+            	label = "MBOM DML"
+            	memonic = "M"
+            	id = "MBOMDML">
+            	<separator name="group1"/>
+            	<command
+                  commandId="MBOMDMLCreate"                 
+                  icon="icons/create.jpg" 
+                  mnemonic="S"                 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+               <command
+                  commandId="MBOMTaskCreate"                 
+                  icon="icons/Task_t16.png" 
+                  mnemonic="T"                 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+            </menu>	-->
+            
+            <!-- END MBOM DML Creation -->
+             <menu
+               label="Update CS"
+               mnemonic="D"
+			   icon="icons/report_admin_app_32.png" 
+               id="UpdateCS">              
+               <separator name="group2"/>                 
+                
+                <command
+                  commandId="SinglePartCS"
+                  mnemonic="S"
+				  icon="icons/edit-property.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <command
+                  commandId="ProductPlantTaskPartCS"
+                  mnemonic="S"
+				  icon="icons/edit-property.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <command
+                  commandId="OptionalCSUpdate"
+                  mnemonic="S"
+				  icon="icons/edit-property.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <command
+                  commandId="ProductPlantTaskPartMESatups"
+                  mnemonic="S"
+				  icon="icons/edit-property.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <command
+                  commandId="MultiplePartSingleCS"
+                  mnemonic="S"
+				  icon="icons/edit-property.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>		
+             </menu>
+             
+           <menu
+               label="APL Re-structuring"
+               mnemonic="D"
+			   icon="icons/pseapplication_16.png" 
+               id="APLRestructure">              
+               <separator name="group3"/>  
+                <command
+                  commandId="AddPart"
+                   icon="icons/assembly.jpg" 
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>               
+                <command
+                  commandId="CutPaste"
+                   icon="icons/assembly.jpg" 
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <command
+                  commandId="DeletePart"
+                   icon="icons/assembly.jpg" 
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+
+			   <!-- Commented by Deepti TZ1.72 backend TZ CV Implementation-->
+               <!--<command
+                  commandId="ModularMBOMCHK"
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>-->	
+             </menu> 
+             <!--<menu
+               label="VC Restructuring For MBOM"
+               mnemonic="D"
+               id="VCInterface">              
+               <separator name="group3"/>  
+                 <command
+                  commandId="VCInterface"
+                  icon="icons/assembly.jpg" 
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command> 
+             
+                 
+             </menu>-->
+             
+             
+            <menu
+               label="Group 98"
+               mnemonic="D"
+			   icon="icons/moved_16.png"
+               id="Group98">              
+               <separator name="group3"/> 
+				   
+				   <command 
+				   commandId="CreateConsumableCategory" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png" 
+				  id="CreateConsumableCategory"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CreateConsumableCategory" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>  
+				   </command> 
+				   
+				   <command 
+				   commandId="AssignConsumableCategory" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png" 
+				   id="AssignConsumableCategory"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="AssignConsumableCategory" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>   
+				   </command>
+               <!--<command 
+               commandId="QueryConsumableCategory" 
+               mnemonic="S"
+               id="com.teamcenter.rac.menus.mainCommand">  
+               </command>-->
+
+				   <command 
+				   commandId="CreateConsumableTemplate" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png" 
+				   id="CreateConsumableTemplate"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CreateConsumableTemplate" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>    
+				   </command>
+
+				   <command 
+				   commandId="ViewConsumableTemplateRev" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png" 
+				   id="ViewConsumableTemplateRev"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="ViewConsumableTemplateRev" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>    
+				   </command>
+               <!--<command 
+               commandId="QueryConsumableTemplate" 
+               mnemonic="S"
+               id="com.teamcenter.rac.menus.mainCommand">  
+               </command>-->
+				   <command 
+				   commandId="ReviseConsumableTemplate" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png" 
+				   id="ReviseConsumableTemplate"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="ReviseConsumableTemplate" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>  
+				   </command>    
+           </menu>
+           
+           <!--ADDED BY SANJAY New98Interface1-->
+           
+            <menu
+               label="Group 98"
+               mnemonic="D"
+			   icon="icons/moved_16.png"
+               id="Group98CV">              
+               <separator name="group3"/> 
+               
+               <menu
+               label="Non-Colour"
+               mnemonic="D"
+               id="NColourGroup98CV">              
+               <separator name="group3"/> 
+				   <command 
+				   commandId="AssignNCConsumableCategoryCV" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png"
+				   id="AssignNCConsumableCategoryCV"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="AssignNCConsumableCategoryCV" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>   
+				   </command>
+               </menu>
+               
+               
+               <menu
+               label="Colour"
+               mnemonic="D"
+               id="ColourGroup98CV">              
+               <separator name="group3"/> 
+				   <command 
+				   commandId="CreateCConsumableCategoryCV" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png"
+				   id="CreateCConsumableCategoryCV"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CreateCConsumableCategoryCV" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>  
+				   </command>   
+				   
+				   <command 
+				   commandId="AssignCConsumableCategoryCV" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png"
+				   id="AssignCConsumableCategoryCV"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="AssignCConsumableCategoryCV" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>    
+				   </command>
+				  
+				   <command 
+				   commandId="CreateCConsumableTemplateCV" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png"
+				   id="CreateCConsumableTemplateCV"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CreateCConsumableTemplateCV" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>     
+				   </command>
+				   
+				   <command 
+				   commandId="ViewCConsumableTemplateRevCV" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png"
+				   id="ViewCConsumableTemplateRevCV"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="ViewCConsumableTemplateRevCV" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>   
+				   </command>
+				   
+				   <command 
+				   commandId="ReviseCConsumableTemplateCV" 
+				   mnemonic="S"
+				   icon="icons/listofvaluesapplication_32.png"
+				   id="ReviseCConsumableTemplateCV"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="ReviseCConsumableTemplateCV" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>  
+				   </command> 
+               </menu>
+               
+               
+           </menu>
+           <!--ADDED BY SANJAY New98Interface1-->
+           
+           
+           <!--ADDED BY DEEPTI TZ1.43 CarryOver-->
+           <menu
+               label="CarryOver Part Stamp"
+               mnemonic="D"
+			   icon="icons/assembly.jpg"
+               id="CarryOverPartStampTCE">              
+               <separator name="group3"/> 
+				   <command 
+				   commandId="CarryOverPartStamp" 
+				   mnemonic="S"
+				   icon="icons/assembly.jpg"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+				   </command>    
+              
+           </menu>
+           
+           <!-- Added By Nilesh EOL FLAG-->
+           <menu
+               label="EOL FLAG Part Stamp"
+               mnemonic="E"
+			   icon="icons/assembly.jpg"
+               id="EOLFlagPartStamp">              
+               <separator name="group3"/> 
+				   <command 
+				   commandId="EOLFlagPartStamping" 
+				   mnemonic="F"
+				   icon="icons/assembly.jpg"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+				   </command>    
+              
+           </menu>
+           
+           <!-- End of EOL FLAG--> 
+           
+            <menu
+               label="EBOM-MBOM BIW Restructuring"
+               mnemonic="D"
+			   icon="icons/pseapplication_16.png"
+               id="EBOMMBOMRest">              
+               <separator name="group3"/> 
+				   <command 
+				   commandId="EBOMMBOMRest" 
+				   mnemonic="S"
+				   icon="icons/assembly.jpg" 
+				   id="EBOMMBOMRest"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EBOMMBOMRest" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+				   </command>    
+              
+           </menu>
+            <!--ADDED BY Nana For Power Train Auto Restructuring-->
+            <menu
+               label="PowerTrain AutoRestructuring"
+               mnemonic="D"
+			   icon="icons/pseapplication_16.png"
+               id="PowTrainRest">              
+               <separator name="group3"/> 
+				   <command 
+				   commandId="PowTrainRest" 
+				   mnemonic="S"
+				   icon="icons/assembly.jpg" 
+				   id="PowTrainRest"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="PowTrainRest" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+				   </command>    
+              
+           </menu>
+           <!--ADDED BY Priyanka For APLGMDML-->
+            <menu
+               label="APL GMDML"
+               mnemonic="D"
+			   icon="icons/new_change_16.png"
+               id="GMDMLcmd">              
+               <separator name="group3"/> 
+               <command 
+               commandId="GMDMLcmd" 
+			   icon="icons/added_16.png"
+               mnemonic="S"
+               id="GMDMLcmd"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="GMDMLcmd" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen> 
+               </command>    
+              
+           </menu>
+           
+           <!--<menu
+               label="APL GMDML CV"
+               mnemonic="D"
+			    icon="icons/new_change_16.png"
+               id="GMDMLcmd1">              
+               <separator name="group3"/> 
+               <command 
+               commandId="GMDMLcmd1"
+			   icon="icons/added_16.png"
+               mnemonic="S"
+               id="GMDMLcmd1"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="GMDMLcmd1" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>   
+               </command>    
+              
+           </menu>-->
+            <!--Commented by Deepti fot TZ1.72 backend -->
+           <!--<menu
+               label="MBOM GMDML"
+               mnemonic="D"
+               id="GMDMLcmd2">              
+               <separator name="group3"/> 
+               <command 
+               commandId="GMDMLcmd2" 
+               mnemonic="S"
+               id="com.teamcenter.rac.menus.mainCommand">  
+               </command>    
+              
+           </menu>-->
+           
+            <!--ADDED BY DEEPTI TZ1.55 VariantFormulaUpdate-->
+           <menu
+               label="Variant Formula Update"
+               mnemonic="D"
+			   icon="icons/report_admin_app_32.png" 
+               id="VariantFormulaUpd">              
+               <separator name="group3"/> 
+				   <command 
+				   commandId="VariantFormulaUpd" 
+				   mnemonic="S"
+				    icon="icons/edit-property.png" 
+				   id="VariantFormulaUpd"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="VariantFormulaUpd" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>    
+				   </command>
+				  
+				   <command 
+				   commandId="DeleteModl" 
+				   mnemonic="S"
+				    icon="icons/edit-property.png" 
+				    id="DeleteModl"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="DeleteModl" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>    
+				   </command>    
+              <!--ADDED BY DEEPTI TZ1.55 VariantFormulaUpdate-->
+           </menu>
+		  
+ 			<!-- ESTIMATE SHEET MENU  -->
+  		    <menu
+		       label="Estimate Sheet"
+		       mnemonic="D"
+			   icon="icons/EstimateSheet.png"
+		       id="EstimateSheet">              
+		       <separator name="group4"/>  
+				   <command 
+				   commandId="CreateES" 
+				   mnemonic="S"
+				   icon="icons/create_16.png"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+				   </command>
+
+				   <command 
+				   commandId="CreateESOpr" 
+				   mnemonic="S"
+				   icon="icons/create_16.png"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+				   </command>
+
+				   <command 
+				   commandId="UpdESAPLView" 
+				   mnemonic="S"
+				   icon="icons/create_16.png"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+				   </command> 
+				   
+					<command 
+				   commandId="UpdESPSDView" 
+				   mnemonic="S"
+				   icon="icons/create_16.png"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+				   </command> 
+                  
+                 <command
+                  commandId="ESTMULOPR"
+                  mnemonic="S"
+                  icon="icons/create_16.png"
+                  id="com.teamcenter.rac.menus.mainCommand">
+                  </command>
+                  
+                  <command
+                  commandId="DWDESTOPR"
+                  mnemonic="V"
+                  icon="icons/create_16.png"
+                  id="com.teamcenter.rac.menus.mainCommand">
+                  </command>
+                  
+                  <command
+                  commandId="UPDESTOPR"
+                  mnemonic="K"
+                  icon="icons/create_16.png"
+                  id="com.teamcenter.rac.menus.mainCommand">
+                  </command>
+				   
+				    <command 
+				   	commandId="PalmSysConfg" 
+				   	mnemonic="S"
+				   	icon="icons/translct.jpg"
+				   	id="com.teamcenter.rac.menus.mainCommand">  
+				   </command> 
+				    
+		        <!-- by dss 1.51
+		       <command 
+		       commandId="DelES" 
+		       mnemonic="D"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>  
+		       end by dss 1.51 -->
+		   </menu>
+		   	<!--CV/PV Implementation TZ1.72 backend-->	   
+		   <!--<menu
+		       label="Purchase Indent"
+		       mnemonic="D"
+		       id="PurchaseIndent">              
+		       <separator name="group5"/>  
+		       <command 
+		       commandId="CreatePI" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       <command 
+		       commandId="QueryPI" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command> 
+		   </menu> 
+		 
+		   <menu
+		       label="PE Tool Indent"
+		       mnemonic="D"
+		       id="PEToolIndent">              
+		       <separator name="group6"/>  
+		       <command 
+		       commandId="CreatePETool" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       
+		       <command 
+		       commandId="QueryPETool" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command> 
+		       
+			    <command 
+				   commandId="UpdateDummyTool" 
+				   mnemonic="S"
+				   icon="icons/petool.png"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+			  </command>
+			  
+			  <command 
+				   commandId="UpdateToolCost" 
+				   mnemonic="S"
+				   icon="icons/petool.png"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+			  </command>
+			  
+			  <command 
+				   commandId="AplreviewCostest" 
+				   mnemonic="S"
+				   icon="icons/petool.png"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+			  </command>
+			  
+			  <command 
+		       commandId="Assignowrkordrbype" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		      </command>
+		      
+		      <command 
+		       commandId="addpeparttoindent" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		      </command>
+		       
+		      <command 
+		       commandId="addpepartanddumytoindent" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		      </command>
+		       
+		   </menu> 
+		   
+		  <menu
+		       label="PE Spare Tool Indent"
+		       mnemonic="D"
+		       id="PESpareToolIndent">              
+		       <separator name="group7"/>  
+		       <command 
+		       commandId="CreatePESpareTool" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       <command 
+		       commandId="QueryPESpareTool" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>  
+		   </menu>  
+		  
+		   <menu
+		       label="CTED Intimation And Access"
+		       mnemonic="D"
+		       id="CTEDIntimationAndAccess">              
+		       <separator name="group8"/>  
+		       <command 
+		       commandId="CreateCTEDTool" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command> 
+		       <command 
+		       commandId="QueryCTEDTool" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command> 
+		   </menu>
+		   
+		    <menu
+		       label="PE DML"
+		       mnemonic="D"
+		       id="PEDMLCreate">              
+		       <separator name="group6"/>  
+		       <command 
+		       commandId="CreatePEDML" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       
+		       <command 
+		       commandId="QueryPEDML" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command> 
+		       
+		   </menu>--> 
+		      
+		<!--   <menu
+		       label="APL Reports"
+		       mnemonic="D"
+		       id="APLReports">              
+		       <separator name="group9"/>  
+		       <command 
+		       commandId="GentplRpt" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       <command 
+		       commandId="SourceListRpt" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command> 
+		   </menu> --> 	                 
+		   <menu
+               label="Cabin Parts"
+               mnemonic="D"
+			   icon="icons/moved_16.png" 
+               id="CRTD9Z01">              
+               <separator name="group3"/>             
+                <command
+                  commandId="FittedCabin"
+				  icon="icons/create_16.png"
+                  mnemonic="S"
+                  id="FittedCabin"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="FittedCabin" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               <command
+                  commandId="MBOMAChk"
+                  mnemonic="S"
+				  icon="icons/reportapplication_16.png"
+                  id="MBOMAChk"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="MBOMAChk" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+                <command
+                  commandId="ADDULMChk"
+                  mnemonic="S"
+				  icon="icons/reportapplication_16.png"
+                  id="ADDULMChk"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="ADDULMChk" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+             </menu>
+             
+             <menu
+               label="F9X01 check"
+               mnemonic="D"
+			   icon="icons/pseapplication_16.png"
+               id="F9X01_check">              
+               <separator name="group3"/>             
+                <command
+                  commandId="F9X01 Restructuring"
+                  mnemonic="S"
+				  icon="icons/moved_16.png" 
+                  id="F9X01_restructuring"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="F9X01_restructuring" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+             </menu>
+
+		   <menu
+               label="Cabin Kit"
+               mnemonic="D"
+			   icon="icons/pseapplication_16.png"
+               id="CabinKit">              
+               <separator name="group3"/>             
+                <command
+                  commandId="CabinKitRestr"
+                  mnemonic="S"
+				  icon="icons/moved_16.png" 
+                  id="CabinKitRestr"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CabinKitRestr" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+             </menu>
+
+         </menuContribution>          
+         </extension> 
+         <!--End For Menu of APL -->
+
+		 <!--Start For Menu of PE -->
+			<extension
+			 point="org.eclipse.ui.menus">
+			<menuContribution
+					locationURI="menu:PE?after=additions">	 
+				<!--<menu
+				   label="Purchase Indent"
+				   mnemonic="D"
+				   id="PurchaseIndent">              
+				   <separator name="group5"/>  
+				   <command 
+				   commandId="CreatePI" 
+				   mnemonic="S"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+				   </command>
+				   <command 
+				   commandId="QueryPI" 
+				   mnemonic="S"
+				   id="com.teamcenter.rac.menus.mainCommand">  
+				   </command> 
+			   </menu>--> 
+
+				<menu
+				   label="PE Tool Indent"
+				   mnemonic="D"
+				   icon="icons/petoolind.png"
+				   id="PEToolIndent">              
+				   <separator name="group6"/>  
+					   
+					   <command 
+						   commandId="CreatePETool" 
+						   mnemonic="S"
+						   icon="icons/create_16.png"
+						   id="com.teamcenter.rac.menus.mainCommand">  
+					   </command>
+					   
+					   <command 
+						   commandId="QueryPETool" 
+						   mnemonic="S"
+						   icon="icons/petool.png"
+						   id="com.teamcenter.rac.menus.mainCommand">  
+					   </command>  
+					   
+					    <command 
+						   commandId="UpdateDummyTool" 
+						   mnemonic="S"
+						   icon="icons/petool.png"
+						   id="com.teamcenter.rac.menus.mainCommand">  
+					   </command>
+					  
+					   <command 
+						   commandId="UpdateToolCost" 
+						   mnemonic="S"
+						   icon="icons/petool.png"
+						   id="com.teamcenter.rac.menus.mainCommand">  
+					   </command>
+					  
+					   <command 
+						   commandId="AplreviewCostest" 
+						   mnemonic="S"
+						   icon="icons/petool.png"
+						   id="com.teamcenter.rac.menus.mainCommand">  
+					   </command>
+					   
+					   <command 
+						   commandId="Assignowrkordrbype" 
+						   mnemonic="S"
+						   icon="icons/petool.png"
+						   id="com.teamcenter.rac.menus.mainCommand">  
+					  </command>
+					  
+					   <command 
+						   commandId="addpeparttoindent" 
+						   mnemonic="S"
+						   icon="icons/petool.png"
+						   id="com.teamcenter.rac.menus.mainCommand">  
+					  </command>
+					  
+					  <command 
+						   commandId="addpepartanddumytoindent" 
+						   mnemonic="S"
+						   icon="icons/petool.png"
+						   id="com.teamcenter.rac.menus.mainCommand">  
+					  </command>
+					  
+			   </menu> 
+			   <menu
+				   label="PE Spare Tool Indent"
+				   mnemonic="D"
+				   id="PESpareToolIndent">              
+				   <separator name="group7"/>  
+					   
+					   <command 
+					   commandId="CreatePESpareTool" 
+					   mnemonic="S"
+					   id="CreatePESpareTool"  style="push"> 				   
+								<visibleWhen
+										checkEnabled="false">
+										 <and>
+											<with
+												  variable="rac_command_suppression">
+											   <not>
+												  <iterate operator="or">
+																<equals value="CreatePESpareTool" />
+												  </iterate>
+											   </not>
+											</with>
+										 </and>
+								</visibleWhen>
+					   </command>
+					   
+					   <command 
+					   commandId="QueryPESpareTool" 
+					   mnemonic="S"
+					   id="QueryPESpareTool"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="QueryPESpareTool" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>  
+					   </command>  
+			   </menu>  
+			  
+			   <menu
+				   label="CTED Intimation And Access"
+				   mnemonic="D"
+				   id="CTEDIntimationAndAccess">              
+				   <separator name="group8"/>  
+				  
+					   <command 
+					   commandId="CreateCTEDTool" 
+					   mnemonic="S"
+					   id="CreateCTEDTool"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="CreateCTEDTool" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>  
+					   </command> 
+
+					   <command 
+					   commandId="QueryCTEDTool" 
+					   mnemonic="S"
+					   id="QueryCTEDTool"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="QueryCTEDTool" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>   
+					   </command> 
+			   </menu> 
+			    <menu
+				   label="PE Part"
+				   mnemonic="D"
+				   id="PEPart">              
+				   <separator name="group8"/>  
+				  
+					   <command 
+					   commandId="CreatePEPart" 
+					   mnemonic="S"
+					   id="CreatePEPart"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="CreatePEPart" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>  
+					   </command> 
+
+					   <command 
+					   commandId="QueryPEPart" 
+					   mnemonic="S"
+					   id="QueryPEPart"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="QueryPEPart" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>   
+					   </command> 
+			   </menu> 
+		  <!-- End MBOM Sub-Menu TZ1.72-->       
+
+		  		<menu
+				   label="PE DML"
+				   mnemonic="D"
+				   icon="icons/new_change_16.png"
+				   id="PEDMLCreate">              
+				   <separator name="group6"/>  
+					<command 
+					   commandId="PDMLCreate" 
+					   mnemonic="S"
+					   icon="icons/create.jpg"
+					   id="com.teamcenter.rac.menus.mainCommand">  
+					</command>	
+					   				   
+					<command
+                     commandId="com.teamcenter.rac.search.parameterizedsearch"
+                     id="com.teamcenter.aplmenu.PEDMLRevisionQryCommand1"
+                     mnemonic="S">
+                  <parameter
+                        name="searchName"
+                        value="PEDML_Query">
+                  </parameter>
+               </command>
+			   	</menu>
+
+			</menuContribution>
+		</extension>
+
+		 <!--End For Menu of PE -->
+		 <!--Start For Menu of CTED Pravin -->
+		  <extension
+       point="org.eclipse.ui.menus">
+    <menuContribution
+          locationURI="menu:CTED?after=additions">
+          
+                   <menu
+				   label="CTED INTIMATION"
+				   mnemonic="D"
+				   id="CTEDIntimation">              
+				   <separator name="group8"/>  
+				  
+					   <command 
+					   commandId="CreateCTEDIntimation" 
+					   mnemonic="S"
+					   id="CreateCTEDIntimation"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="CreateCTEDIntimation" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>  
+					   </command> 
+
+					    <!-- <command 
+					   commandId="QueryCTEDIntimation" 
+					   mnemonic="S"
+					   id="QueryCTEDIntimation"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="QueryCTEDIntimation" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>   
+					   </command> 
+			   </menu> -->
+			   		<command
+                     commandId="com.teamcenter.rac.search.parameterizedsearch"
+                     id="com.teamcenter.aplmenu.CTEDIntimationQryCommand"
+                     mnemonic="S">
+                  <parameter
+                        name="searchName"
+                        value="CTED_IntimationQry">
+                  </parameter>
+               </command>
+			   	</menu>
+          
+                   <menu
+				   label="WORK RECORD"
+				   mnemonic="D"
+				   id="WORKRECORD">              
+				   <separator name="group8"/>  
+				  
+					   <command 
+					   commandId="CreateWORKRECORD" 
+					   mnemonic="S"
+					   id="CreateWORKRECORD"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="CreateWORKRECORD" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>  
+					   </command> 
+
+					<!--   <command 
+					   commandId="QueryWORKRECORD" 
+					   mnemonic="S"
+					   id="QueryWORKRECORD"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="QueryWORKRECORD" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>   
+					   </command> 
+			   </menu> -->
+			   
+			   	   	<command
+                     commandId="com.teamcenter.rac.search.parameterizedsearch"
+                     id="com.teamcenter.aplmenu.PEDMLRevisionQryCommand1"
+                     mnemonic="S">
+                  <parameter
+                        name="searchName"
+                        value="CTED_WORKRECORDS_Qry">
+                  </parameter>
+               </command>
+			   	</menu>
+			   
+			       <menu
+				   label="INDIVIDUAL UNIT CTED"
+				   mnemonic="D"
+				   id="INDUNITCTED">              
+				   <separator name="group8"/>  
+				  
+					   <command 
+					   commandId="CreateINDUNITCTED" 
+					   mnemonic="S"
+					   id="CreateINDUNITCTED"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="CreateINDUNITCTED" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>  
+					   </command> 
+
+			   <command
+                     commandId="com.teamcenter.rac.search.parameterizedsearch"
+                     id="com.teamcenter.aplmenu.PEDMLRevisionQryCommand1"
+                     mnemonic="S">
+                  <parameter
+                        name="searchName"
+                        value="IND_UNIT_CTED_Qry">
+                  </parameter>
+               </command>
+			   	</menu>
+			   
+			   
+			   <menu
+				   label="TRIAL REPORT NUMBE BOOKING"
+				   mnemonic="D"
+				   id="TrlReplNumlBooking">              
+				   <separator name="group8"/>  
+				  
+					   <command 
+					   commandId="CreateTrlReplNumlBooking" 
+					   mnemonic="S"
+					   id="CreateTrlReplNumlBooking"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="CreateTrlReplNumlBooking" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>  
+					   </command> 
+
+			    <command
+                     commandId="com.teamcenter.rac.search.parameterizedsearch"
+                     id="com.teamcenter.aplmenu.PEDMLRevisionQryCommand1"
+                     mnemonic="S">
+                  <parameter
+                        name="searchName"
+                        value="Trial_Report_NumQry">
+                  </parameter>
+               </command>
+			   	</menu>
+			 	   
+    </menuContribution>
+ </extension>
+         <!--end For Menu of CTED -->
+		<!-- MBPA Menu -->
+		<extension point="org.eclipse.ui.menus">
+			<menuContribution locationURI="menu:MBPA?after=additions">	
+				<menu
+				   label="MBPA (NON-EPA)"
+				   mnemonic="D"
+				   id="MBPANONEPA">              
+				   <separator name="MBPAGroup"/>  
+					   <command 
+					   commandId="CREATEMBPANONEPA" 
+					   mnemonic="S"
+					   id="CREATEMBPANONEPA"  style="push"> 				   
+							<visibleWhen
+									checkEnabled="false">
+									 <and>
+										<with
+											  variable="rac_command_suppression">
+										   <not>
+											  <iterate operator="or">
+															<equals value="CREATEMBPANONEPA" />
+											  </iterate>
+										   </not>
+										</with>
+									 </and>
+							</visibleWhen>  
+					   </command> 
+			   </menu> 
+			</menuContribution>
+		</extension>
+		<!-- MBPA Menu End-->
+		
+		
+		
+         <!--Start For Handlers of APL -->         	
+         <extension 
+	 		point="org.eclipse.ui.commands">
+	 		<!--Added by Priti TZ1.45-->
+	 		<category
+            name="Sample Category"
+            id="com.teamcenter.aplmenu.commands.category">
+      		</category>
+      		<command
+            	categoryId="com.teamcenter.aplmenu.commands.category"
+            	id="com.teamcenter.rac.search.parameterizedsearch"
+            	name="Query">
+         		<commandParameter
+               		id="searchName"
+               		name="searchName"
+               		optional="false">
+         		</commandParameter>
+      		</command>
+      		<!--Added by Priti Ends TZ1.45-->
+	 		<!--Start Create APL PART-->
+	 		<!--<command 
+				name="Stage Assembly" 
+				id="com.teamcenter.rac.newBO"> 
+			</command>	-->		
+		    <command 
+				name="Stage Assembly" 
+				id="CreateModAssy"> 
+			</command>	
+			<!--End Create APL PART-->
+			<command 
+				name="Create" 
+				id="APLDMLCreate"> 
+			</command>
+			<command 
+				name="Update" 
+				id="APLDMLUpdate"> 
+			</command>	
+			<!--DML IMPL..............................................................-->
+			<command 
+				name="Plant Wise DML Implosion Report" 
+				id="DMLIMPLRPT"> 
+			</command>
+			
+			<command 
+				name="STDSI Signoff Exception Report" 
+				id="STDEXCPRPT"> 
+		   </command>
+						
+			<command 
+				name="Multi Part Implosion Report" 
+				id="MULPRTIMPLRPT"> 
+			</command>
+			
+			<command 
+				name="Project Code Mapping Report" 
+				id="PRGCODERPT"> 
+			</command>
+			
+			<!--MODULE COMPARISION FOR VC..............................................................-->
+			<command 
+				name="Module Comparision Report For VC Between ERC/APL" 
+				id="MDLCPRRPT">
+			</command>
+	       <!--.......................................................................-->		
+		   <!-- <command 
+				name="Query" 
+				id="APLDMLQuery"> 
+			</command>	-->
+			
+			<!-- Start 
+				Added by Nilesh MBOM DML/Task Create option -->
+			<command 					
+				name="Create" 
+				id="MBOMDMLCreate"> 
+			</command>
+			
+			<command
+				name="Create Task"
+				id="MBOMTaskCreate">
+			</command>
+			
+			<!-- End 
+				Added by Nilesh MBOM DML/Task Create option -->
+		    <command 
+				name="Update CS For Single Part" 
+				id="SinglePartCS"> 
+			</command>	
+			<command 
+				name="Update Optional CS for Solution Items" 
+				id="OptionalCSUpdate"> 
+			</command>
+		    <command 
+				name="Update CS for Solution Items" 
+				id="ProductPlantTaskPartCS"> 
+			</command>
+			<command 
+				name="Update MES Attributes For Product Plan Items" 
+				id="ProductPlantTaskPartMESatups"> 
+			</command>
+		    <command 
+				name="Update Multiple Part Single CS" 
+				id="MultiplePartSingleCS"> 
+			</command>
+			
+			<command 
+				name="Add Part In Structure" 
+				id="AddPart"> 
+			</command>
+			<command 
+				name="Cut and Paste Part In Structure" 
+				id="CutPaste"> 
+			</command>			
+		    <command 
+				name="Delete Part from Structure" 
+				id="DeletePart"> 
+			</command>	
+			<command 
+				name="MBOM VC Accuracy Report" 
+				id="ModularMBOMCHK"> 
+			</command>
+		      <command 
+				name="Create Consumable Category" 
+				id="CreateConsumableCategory"> 
+			</command>
+		    <command 
+				name="Assign Consumable Category" 
+				id="AssignConsumableCategory"> 
+			</command>
+			
+			<!--ADDED BY SANJAY New98Interface1-->
+			
+			<command 
+				name="Assign Non-Colour Consumable Category(CV)" 
+				id="AssignNCConsumableCategoryCV"> 
+			</command>
+			
+			<command 
+				name="Create Colour Consumable Category(CV)" 
+				id="CreateCConsumableCategoryCV"> 
+			</command>
+			
+			<command 
+				name="Assign Colour Consumable Category(CV)" 
+				id="AssignCConsumableCategoryCV"> 
+			</command>
+			
+			<command 
+				name="Create Colour Consumable Template(CV)" 
+				id="CreateCConsumableTemplateCV"> 
+			</command>
+			
+			<command 
+				name="View Colour Consumable Template Rev(CV)" 
+				id="ViewCConsumableTemplateRevCV"> 
+			</command>
+			
+			<command 
+				name="Revise Colour Consumable Template(CV)" 
+				id="ReviseCConsumableTemplateCV"> 
+			</command>
+			<!--ADDED BY SANJAY New98Interface1-->
+			
+			<!--ADDED BY DEEPTI TZ1.43 CarryOver-->
+			<command 
+				name="CarryOver Part Stamping" 
+				id="CarryOverPartStamp"> 
+			</command>
+			
+			<!-- Added by Nilesh EOL Flag Stamp -->
+			<command 
+				name="EOL Flag Stamp" 
+				id="EOLFlagPartStamping"> 
+			</command>
+			
+			<command 
+				name="EBOM-MBOM BIW Module Restructuring" 
+				id="EBOMMBOMRest"> 
+			</command>
+			
+			<command 
+				name="PowerTrain Module AutoRestructuring" 
+				id="PowTrainRest"> 
+			</command>
+			
+			<!--ADDED BY Priyanka -->
+			<command 
+				name="Attach Child Parts To APL GMDML" 
+				id="GMDMLcmd"> 
+			</command>
+			
+			<!--<command 
+				name="Attach Child Parts To APL GMDML" 
+				id="GMDMLcmd1"> 
+			</command>-->
+			
+			<command 
+				name="Attach Child Parts To MBOM GMDML" 
+				id="GMDMLcmd2"> 
+			</command>
+			
+			<command 
+				name="Relate to Variant Formula Update DML" 
+				id="VariantFormulaUpd"> 
+			</command>
+			
+			<command 
+				name="Delete Module" 
+				id="DeleteModl"> 
+			</command>
+			
+			
+		    <!--<command 
+				name="Query Consumable Category" 
+				id="QueryConsumableCategory"> 
+			</command>-->
+			<command 
+				name="Create Consumable Template" 
+				id="CreateConsumableTemplate"> 
+			</command>
+			<command 
+				name="View Consumable Template Rev" 
+				id="ViewConsumableTemplateRev"> 
+			</command>
+			<!--<command 
+				name="Query Consumable Template" 
+				id="QueryConsumableTemplate"> 
+			</command>-->
+		    <command 
+				name="Revise Consumable Template" 
+				id="ReviseConsumableTemplate"> 
+			</command>	
+			
+		    <command 
+				name="Create Estimate Sheet" 
+				id="CreateES"> 
+			</command>
+			<command 
+				name="Create Estimate Operation" 
+				id="CreateESOpr"> 
+			</command>
+			 <command 
+				name="Update Estimate Operations (APL View)" 
+				id="UpdESAPLView"> 
+			</command>
+			 <command 
+				name="Update Estimate Operations (PSD View)" 
+				id="UpdESPSDView"> 
+			</command>
+			
+			<command 
+				name="Create Multiple Operations using .txt/.csv file" 
+				id="ESTMULOPR"> 
+			</command>
+			
+			<command 
+				name="Download Estimate Operations details for APL/PSD" 
+				id="DWDESTOPR"> 
+			</command>
+			
+			<command 
+				name="Upload Estimate Operations details for APL/PSD" 
+				id="UPDESTOPR"> 
+			</command>
+			
+			<command 
+				name="View PaLMSys (DELMIA-MOST) Interface" 
+				id="PalmSysConfg"> 
+			</command>
+			
+			<!-- by dss 1.51
+			<command 
+				name="Delete Estimate Sheet With Operations" 
+				id="DelES"> 
+			</command>
+			 end by dss 1.51-->
+					
+		    <!--<command 
+				name="Query" 
+				id="QueryES"> 
+			</command>-->
+			
+		    <command 
+				name="Create" 
+				id="CreatePI"> 
+			</command>		
+		    <command 
+				name="Query" 
+				id="QueryPI"> 
+			</command>			
+			
+		
+		    <command 
+				name="Create PE Tool Indent" 
+				id="CreatePETool"> 
+			</command>		
+			
+		    <command 
+				name="Update No Of PE Dummy Tool Required" 
+				id="QueryPETool"> 
+			</command>			
+		    
+		    <command 
+				name="Generation Of Dummy Tool and Update" 
+				id="UpdateDummyTool"> 
+			</command>
+			
+		    <command 
+				name="Update of Tool Cost and PE Operation" 
+				id="UpdateToolCost"> 
+			</command>
+			
+		    <command 
+				name="APL Review of Cost Estimate" 
+				id="AplreviewCostest"> 
+			</command>
+		
+			<command 
+				name="Assign WorkOrder by PE Planner" 
+				id="Assignowrkordrbype"> 
+			</command>
+			
+			<command 
+				name="Add PE Part to Indent By APLPlanner(OLD)" 
+				id="addpeparttoindent"> 
+			</command>
+			
+			<command 
+				name="Add Actual and Dummy Tool to Indent(MIX)" 
+				id="addpepartanddumytoindent"> 
+			</command>
+			
+		    <command 
+				name="Create" 
+				id="CreatePESpareTool"> 
+			</command>		
+		    <command 
+				name="Query" 
+				id="QueryPESpareTool"> 
+			</command>	
+			
+			
+			<command 
+				name="Create" 
+				id="CreateCTEDTool"> 
+			</command>		
+		    <command 
+				name="Query" 
+				id="QueryCTEDTool"> 
+			</command>
+			
+			<command 
+				name="Create" 
+				id="CreatePEPart"> 
+			</command>		
+		    <command 
+				name="Query" 
+				id="QueryPEPart"> 
+			</command>		
+				
+			<command 
+				name="Create" 
+				id="CREATEMBPANONEPA"> 
+			</command>
+			
+			<command 
+				name="Create" 
+				id="PDMLCreate"> 
+			</command>
+	
+			<command 
+				name="Configurable BOM Report" 
+				id="CommonReportDialog"> 
+			</command>
+			
+			<command 
+				name="DML Audit Report" 
+				id="DMLBWReport"> 
+			</command>
+			
+			<command 
+				name="BOM Implosion Report" 
+				id="BOMImplosion"> 
+			</command>
+			
+			<!--
+			<command 
+				name="Gentpl Report" 
+				id="GentplRpt"> 
+			</command>		
+		    <command 
+				name="Source List Report" 
+				id="SourceListRpt"> 
+			</command>	
+			 <command 
+				name="Action Plan Report" 
+				id="ActPlnRpt"> 
+			</command>-->
+				<!--Start For EBOM-MBOM Report -->	
+			 <command 
+				name="EBOM-MBOM Consumption Report" 
+				id="EMBOMCRpt"> 
+			</command>
+			<!--End For EBOM-MBOM Report -->
+			<command 
+				name="Tryout Between Date Report" 
+				id="TryBtwnDtRpt"> 
+			</command>
+			<command 
+				name="Tryout Analyst Reviewer Wise Report" 
+				id="TryAnaWiseRpt"> 
+			</command>
+			<command 
+				name="SMDML BOM Restructuring Report" 
+				id="SMDMLBOMRestrRpt"> 
+			</command>
+			
+			<command 
+				name="APL DML Restructuring Report" 
+				id="APLDMLRestructuringRpt"> 
+			</command>
+			
+			<command
+            id="com.teamcenter.aplmenu.reports.tm_GmDmlReportHandler3"
+            name="GMDML status Report">
+            </command>
+			
+			<command 
+				name="SMDML Date Wise Report" 
+				id="SMDMLDtWiseRpt"> 
+			</command>
+			
+			
+			
+			<command 
+				name="Tool Indent Report" 
+				id="ToolIndRpt"> 
+			</command>
+			<command 
+				name="Tool Indent Cost Estimate Report" 
+				id="ToolIndCstEstRpt"> 
+			</command>	
+			<command 
+				name="Tool Indent Report Between Date" 
+				id="ToolIndRptBtwnDt"> 
+			</command>	
+			 <command 
+				name="Uniq Part List Report" 
+				id="UniqPrtListRpt"> 
+			</command>
+			<command 
+				name="Input Sheet Generation For MBOM" 
+				id="InputSheetGenMBOM"> 
+			</command>
+			<command 
+				name="VCList Report" 
+				id="vclistrpt"> 
+			</command>
+			<command 
+				name="GM DML Released Part Report" 
+				id="GMDMLRelrpt"> 
+			</command>
+			<command 
+				name="Common Add Delete report for two different part" 
+				id="CADReport"> 
+			</command>
+			
+			<command 
+				name="Multi Part PO/Cost (SAP)" 
+				id="MultiPartPOSAP"> 
+			</command>
+			<command 
+				name="SOR Report for VC/Module/Multiple Parts" 
+				id="VCSORRpt"> 
+			</command>
+			
+			<command 
+				name="MIS Report" 
+				id="DMLISRpt"> 
+			</command>
+			
+			<command
+					id="CreateModAssyCV"
+					name="Stage Assembly">
+			</command>
+			<command
+					id="APL14Digit"
+					name="APL 14 Digit Part Create">
+			</command>	
+			<command
+					id="CreateGroupPrtMBOM"
+					name="Create Group Part">
+			</command>
+			
+			<command
+					id="StructureConfig"
+					name="Configure Structure">
+			</command>
+			<command 
+				name="Generate Fitted CAB D9Z01 For Modular Vehicle" 
+				id="FittedCabin"> 
+			</command>
+			<command 
+                name="Modular BOM Accuracy Check" 
+                id="MBOMAChk"> 
+           </command>
+           <command 
+                name="Add Paint Related Part Under Long Member" 
+                id="ADDULMChk"> 
+           </command>
+           <command 
+                name="F9X01 Restructuring" 
+                id="F9X01_restructuring"> 
+           </command>
+              <command
+		     id="CreateWORKRECORD"
+		     name="Create">
+		   </command>
+		   <command
+		     id="QueryWORKRECORD"
+		     name="Query">
+		   </command>
+		   <command
+		     id="CreateCTEDIntimation"
+		     name="Create">
+		   </command>
+		   <command
+		     id="QueryCTEDIntimation"
+		     name="Query">
+		   </command>
+		   <command
+		     id="CreateINDUNITCTED"
+		     name="Create">
+		   </command>
+		   <command
+		     id="QueryINDUNITCTED"
+		     name="Query">
+		   </command>
+		   <command
+		     id="CreateTrlReplNumlBooking"
+		     name="Create">
+		   </command>
+		   <command
+		     id="QueryTrlReplNumlBooking"
+		     name="Query">
+		   </command>
+		   <command 
+		     name="Cabin Kit Restructuring" 
+		     id="CabinKitRestr"> 
+           </command>
+
+		</extension>  
+	   <!--End For Handlers of APL -->	
+	 
+	  <!--Start For Handlers of APL -->	
+       <extension
+         point="org.eclipse.ui.handlers">
+          <!--Start Create APL PART-->
+        <!-- <handler
+            commandId="com.teamcenter.rac.newBO">
+         </handler>-->	
+          <handler
+            commandId="CreateModAssy"
+            class="com.teamcenter.aplmenu.handlers.tm_APLCreateModAssyHandler">
+        </handler>
+        <!--End Create APL PART-->
+		 <handler
+            commandId="APLDMLCreate"
+            class="com.teamcenter.aplmenu.handlers.tm_APLCreateAPLDMLHandler">
+        </handler>
+        <handler
+            commandId="APLDMLUpdate"
+            class="com.teamcenter.aplmenu.handlers.tm_APLUpdateAPLDMLHandler">
+        </handler>
+        <handler
+            commandId="MBOMDMLCreate"
+            class="com.teamcenter.aplmenu.handlers.tm_CreateMBOMLDMLHandler">
+      </handler>
+        
+        <handler
+            commandId="MBOMTaskCreate"
+            class="com.teamcenter.aplmenu.handlers.tm_MbomTaskCreateHandler">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_MBOMDMLRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+      <!--  <handler
+            commandId="APLDMLQuery"
+            class="com.teamcenter.aplmenu.actions.tm_APLAction">
+        </handler>-->
+        
+        
+        <handler
+            commandId="SinglePartCS"
+            class="com.teamcenter.aplmenu.handlers.tm_APLUpdateCSHandler">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision,T5_EE_PartRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+            commandId="ProductPlantTaskPartCS"
+            class="com.teamcenter.aplmenu.handlers.tm_APLUpdCSForPrdctPlanHandler">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+            commandId="OptionalCSUpdate"
+            class="com.teamcenter.aplmenu.handlers.tm_OptionalCSUpdateHandler">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+            commandId="ProductPlantTaskPartMESatups"
+            class="com.teamcenter.aplmenu.handlers.tm_APLUpdMESatForPrdctPlanHandler">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+            commandId="MultiplePartSingleCS"
+            class="com.teamcenter.aplmenu.handlers.tm_APLUpdMultiPrtSingleCSHandler">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision,T5_EE_PartRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+          </handler>
+          <handler
+            commandId="AddPart"
+            class="com.teamcenter.aplmenu.handlers.tm_AddPartHandler">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision,T5_EE_PartRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+         </handler>
+         
+         <handler
+            commandId="CutPaste"
+            class="com.teamcenter.aplmenu.handlers.tm_APLCutPastePartHandler">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="BOMLine">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+            commandId="DeletePart"
+            class="com.teamcenter.aplmenu.handlers.tm_DeletePrtFrmStructHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="BOMLine">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+            commandId="ModularMBOMCHK"
+            class="com.teamcenter.aplmenu.handlers.tm_MbomModularAccrcyChk">
+        </handler>
+        
+          <handler
+            commandId="CreateConsumableCategory"
+            class="com.teamcenter.aplmenu.handlers.tm_Grp98CreateConsuCatHandler">
+        </handler> 
+         <handler
+            commandId="AssignConsumableCategory"
+            class="com.teamcenter.aplmenu.handlers.tm_Grp98AsgnPCBUConsuCatHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        
+        <!--ADDED BY SANJAY New98Interface1-->
+        
+        <handler
+            commandId="AssignNCConsumableCategoryCV"
+            class="com.teamcenter.aplmenu.handlers.tm_Grp98AsgnCVBUNonColourConsuCatHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        
+        <handler
+            commandId="CreateCConsumableCategoryCV"
+            class="com.teamcenter.aplmenu.handlers.tm_Grp98CreateCVBUColourConsuCatHandler">
+        </handler> 
+        
+       <handler
+            commandId="AssignCConsumableCategoryCV"
+            class="com.teamcenter.aplmenu.handlers.tm_Grp98AsgnCVBUColourConsuCatHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+         <handler
+            commandId="CreateCConsumableTemplateCV"
+            class="com.teamcenter.aplmenu.handlers.tm_Grp98CreateCVBUColourConsuTempltHandler">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_ConsmableCatRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+        commandId="ViewCConsumableTemplateRevCV"
+           class="com.teamcenter.aplmenu.handlers.tm_Grp98ViewConsuTemplthandler">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_ConsumableTmpRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+            commandId="ReviseCConsumableTemplateCV"
+            class="com.teamcenter.aplmenu.handlers.tm_98ConsuCVBUColourTemplateReviseHandler">                      
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_ConsumableTmpRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+		
+		<!--ADDED BY SANJAY New98Interface1-->
+        
+        
+        <!--ADDED BY PAVAN NewVCInterface1-->
+        <handler
+            commandId="VCInterface"
+            class="com.teamcenter.aplmenu.handlers.tm_VCRestructuringForMBOMHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        
+        <handler
+            commandId="deleteDesignRevision"
+            class="com.teamcenter.aplmenu.views.tm_DeleteDesignRevisionCaller">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>        
+
+        
+        <handler
+            commandId="VCInterface"
+            class="com.teamcenter.aplmenu.actions.tm_VCRestructuringForMBOMHandler">
+        </handler>
+        <handler
+            commandId="VC Restructuring Automation"
+            class="com.teamcenter.aplmenu.handlers.tm_VCRestructuringHandlerAutomation">
+        </handler>
+        
+        <!--ADDED BY DEEPTI TZ1.43 CarryOver-->
+         <handler
+            commandId="CarryOverPartStamp"
+            class="com.teamcenter.aplmenu.actions.tm_APLCarryOverPartStamp">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+        
+        <!-- Added by Nilesh EOL FLAG -->
+        <handler
+            commandId="EOLFlagPartStamping"
+            class="com.teamcenter.aplmenu.handlers.tm_EOLFlagPartStampHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="VariantFormulaUpd"
+            class="com.teamcenter.aplmenu.views.tm_VariantFormulaUpdDialog">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="BOMLine">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+        
+         <handler
+            commandId="DeleteModl"
+            class="com.teamcenter.aplmenu.views.tm_DeleteModUpdDialog">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="BOMLine">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+        
+        
+        
+        <handler
+            commandId="EBOMMBOMRest"
+            class="com.teamcenter.aplmenu.views.tm_EBOMMBOMRestDialog">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+        
+        
+              <handler
+            commandId="PowTrainRest"
+            class="com.teamcenter.aplmenu.views.tm_PowTrainAutoRestDialog">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+        
+        <!--ADDED BY Priyanka For APLGMDML-->
+        <handler
+           commandId="GMDMLcmd"
+            class="com.teamcenter.aplmenu.handlers.tm_AttachChildPartsToAPLGMDML">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision,T5_MBOMTASKRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <!--<handler
+           commandId="GMDMLcmd1"
+            class="com.teamcenter.aplmenu.handlers.tm_AttachChildPartsToAPLGMDML">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision,T5_MBOMTASKRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>-->
+        
+        <handler
+           commandId="GMDMLcmd2"
+            class="com.teamcenter.aplmenu.handlers.tm_AttachChildPartsToAPLGMDML">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision,T5_MBOMTASKRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+          
+        <!--<handler
+            commandId="QueryConsumableCategory"
+            class="aplmenu.actions.APLAction">
+        </handler>-->
+        <handler
+            commandId="CreateConsumableTemplate"
+            class="com.teamcenter.aplmenu.handlers.tm_Grp98CreateConsuTempltHandler">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_ConsmableCatRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+        commandId="ViewConsumableTemplateRev"
+           class="com.teamcenter.aplmenu.handlers.tm_Grp98ViewConsuTemplthandler">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_ConsumableTmpRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <!--<handler
+            commandId="QueryConsumableTemplate"
+            class="aplmenu.actions.APLAction">
+        </handler>-->
+        <handler
+            commandId="ReviseConsumableTemplate"
+            class="com.teamcenter.aplmenu.handlers.tm_98ConsuTemplateReviseHandler">                      
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_ConsumableTmpRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+               
+         <handler
+            commandId="CreateES"
+            class="com.teamcenter.aplmenu.views.tm_APLCreateESDialog">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision,T5_EE_PartRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+		</handler>
+		
+		<handler
+            commandId="CreateESOpr"
+            class="com.teamcenter.aplmenu.views.tm_APLCreateESOprDialog">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EstimateSheetRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+		</handler>
+        
+        <handler
+            commandId="UpdESAPLView"
+            class="com.teamcenter.aplmenu.handlers.tm_APLUpdESAplViewHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EstimateSheetRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>
+        <handler
+            commandId="UpdESPSDView"
+            class="com.teamcenter.aplmenu.handlers.tm_APLUpdESPsdViewHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EstimateSheetRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>        
+        <handler
+        
+        
+            commandId="PalmSysConfg"
+            class="com.teamcenter.aplmenu.handlers.tm_PalmSysInterfaceHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EstimateSheetRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>
+        
+        <handler
+            commandId="ESTMULOPR"
+            class="com.teamcenter.aplmenu.handlers.tm_EstCreateMulOprHandler">
+        </handler> 
+        
+         <handler
+            commandId="DWDESTOPR"
+            class="com.teamcenter.aplmenu.handlers.tm_DwdEstOprHandler">
+        </handler> 
+        
+        <handler
+            commandId="UPDESTOPR"
+            class="com.teamcenter.aplmenu.handlers.tm_UpdEstOprHandler">
+        </handler> 
+        
+         <!-- by dss 1.51
+         <handler
+            commandId="DelES"
+            class="com.teamcenter.aplmenu.handlers.tm_APLDelESHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EstimateSheetRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>
+        by dss 1.51-->
+        <!--<handler
+            commandId="QueryES"
+            class="aplmenu.actions.APLAction">
+        </handler>-->
+        
+       
+        <handler
+            commandId="CreatePI"
+            class="com.teamcenter.aplmenu.actions.tm_APLAction">
+        </handler>
+        <handler
+            commandId="QueryPI"
+            class="com.teamcenter.aplmenu.actions.tm_APLAction">
+        </handler>
+        
+        <handler
+            commandId="CreatePETool"
+             class="com.teamcenter.aplmenu.views.tm_PEToolIndentCreateDialog">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision,T5_EE_PartRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>
+        <handler
+            commandId="QueryPETool"
+            class="com.teamcenter.aplmenu.views.tm_PEUpdateDummyToolDialog">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,t5_PEToolIndentRevision, PE Tool Indent Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler> 
+          
+        <handler
+            commandId="UpdateDummyTool"
+             class="com.teamcenter.aplmenu.handlers.tm_GenerationDummyTool">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,t5_PEToolIndentRevision, PE Tool Indent Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>   
+        
+        <handler
+            commandId="UpdateToolCost"
+             class="com.teamcenter.aplmenu.views.tm_PEUpdateToolCostAndOprtn">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,t5_PEToolIndentRevision, PE Tool Indent Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>                               
+    
+        <handler
+            commandId="AplreviewCostest"
+             class="com.teamcenter.aplmenu.views.tm_PEAPLreviewcostestDialog">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,t5_PEToolIndentRevision, PE Tool Indent Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>   
+    		  
+       <handler
+            commandId="Assignowrkordrbype"
+             class="com.teamcenter.aplmenu.views.tm_PEAssignWorkOrderByPEDialog">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,t5_PEToolIndentRevision, PE Tool Indent Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler> 
+        
+        <handler
+            commandId="addpeparttoindent"
+             class="com.teamcenter.aplmenu.views.tm_AddPeparttoIndentDialog">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,t5_PEToolIndentRevision, PE Tool Indent Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler> 
+        
+        <handler
+            commandId="addpepartanddumytoindent"
+             class="com.teamcenter.aplmenu.views.tm_AddPepartanddmytoIndentDialog">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,t5_PEToolIndentRevision, PE Tool Indent Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler> 
+        
+       <handler
+            commandId="CreatePESpareTool"
+            class="com.teamcenter.aplmenu.actions.tm_APLAction">
+        </handler>
+        <handler
+            commandId="QueryPESpareTool"
+            class="com.teamcenter.aplmenu.actions.tm_APLAction">
+        </handler>
+         <handler
+            commandId="CreateCTEDIntimation"
+            class="com.teamcenter.aplmenu.actions.tm_CTEDInd">
+        </handler>
+        <handler
+            commandId="QueryCTEDIntimation"
+            class="com.teamcenter.aplmenu.actions.tm_CTEDInd">
+        </handler>  
+        
+           <handler
+            commandId="CreateWORKRECORD"
+            class="com.teamcenter.aplmenu.actions.tm_WrkRd">
+        </handler>
+        <handler
+            commandId="QueryWORKRECORD"
+            class="com.teamcenter.aplmenu.actions.tm_WrkRd">
+        </handler>  
+        
+        <handler
+            commandId="CreateINDUNITCTED"
+            class="com.teamcenter.aplmenu.actions.tm_IndUt">
+        </handler>
+        <handler
+            commandId="QueryINDUNITCTED"
+            class="com.teamcenter.aplmenu.actions.tm_IndUt">
+        </handler>  
+        
+        <handler
+            commandId="CreateTrlReplNumlBooking"
+            class="com.teamcenter.aplmenu.actions.tm_TICtr">
+        </handler>
+        <handler
+            commandId="QueryTrlReplNumlBooking"
+            class="com.teamcenter.aplmenu.actions.tm_TICtr">
+        </handler>  
+ 
+        <handler
+            commandId="CreateCTEDTool"
+            class="com.teamcenter.aplmenu.actions.tm_APLAction">
+        </handler>
+        <handler
+            commandId="QueryCTEDTool"
+            class="com.teamcenter.aplmenu.actions.tm_APLAction">
+        </handler>  
+        
+        <handler
+            commandId="CreatePEPart"
+            class="com.teamcenter.aplmenu.actions.tm_PEPart">
+        </handler>
+        <handler
+            commandId="QueryPEPart"
+            class="com.teamcenter.aplmenu.actions.tm_PEPart">
+        </handler>  
+        <handler
+            commandId="CREATEMBPANONEPA"
+            class="com.teamcenter.aplmenu.actions.tm_MBPANONEPA">
+        </handler>
+		<handler
+            commandId="PDMLCreate"
+            class="com.teamcenter.aplmenu.views.tm_PEDMLCreateDialogView">
+            <activeWhen>
+               	 	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_PeDesignRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>       
+        </handler>
+    
+        <handler
+            commandId="CommonReportDialog"
+            class="com.teamcenter.aplmenu.reports.tm_CommonReportDialog">
+        </handler>
+        
+        <handler
+            commandId="DMLBWReport"
+            class="com.teamcenter.aplmenu.handlers.tm_DMLBWDateHandler">
+        </handler>
+    
+    	<handler
+            commandId="BOMImplosion"
+            class="com.teamcenter.aplmenu.handlers.tm_BOMImplosionHandler">
+        </handler>
+        
+        <!--<handler
+            commandId="GentplRpt"
+            class="aplmenu.actions.APLAction">
+        </handler>
+        <handler
+            commandId="SourceListRpt"
+            class="aplmenu.reports.SourceListRpt">
+        </handler>
+		<handler
+            commandId="ActPlnRpt"
+            class="aplmenu.reports.ActionPlanRpt">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+          </handler> -->  
+		   <!--Start For EBOM-MBOM Report -->	
+          <handler
+            commandId="EMBOMCRpt"
+            class="com.teamcenter.aplmenu.reports.tm_EMBomComRptNew">
+        </handler> 
+        <!--End For EBOM-MBOM Report -->
+        <handler
+            commandId="TryBtwnDtRpt"
+            class="com.teamcenter.aplmenu.reports.tm_TryoutBtwnDtRpt">
+        </handler>
+        <handler
+            commandId="TryAnaWiseRpt"
+            class="com.teamcenter.aplmenu.reports.tm_TryoutAnalystReviewerWiseRpt">
+        </handler> 
+       
+        <handler
+            commandId="SMDMLBOMRestrRpt"
+            class="com.teamcenter.aplmenu.reports.tm_SMDMLBOMRestructuringRpt">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_SMDMLRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+         <handler
+            commandId="APLDMLRestructuringRpt"
+            class="com.teamcenter.aplmenu.reports.tm_APLDMLRestructuringHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLDMLRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+       
+       
+        <handler
+            commandId="SMDMLDtWiseRpt"
+            class="com.teamcenter.aplmenu.reports.tm_SMDMLDatewiseRpt">
+        </handler>
+        
+        
+        
+          <handler
+            commandId="com.teamcenter.aplmenu.reports.tm_GmDmlReportHandler3"
+            class="com.teamcenter.aplmenu.reports.tm_GmDmlReportHandler3">
+            
+          </handler>
+        
+        
+        <handler
+            commandId="ToolIndRpt"
+            class="com.teamcenter.aplmenu.reports.tm_ToolIndentReport">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_PEToolIndentRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+       
+        <handler
+            commandId="ToolIndCstEstRpt"
+            class="com.teamcenter.aplmenu.reports.tm_ToolIndentCstEstRpt">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_PEToolIndentRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+       
+        <handler
+            commandId="ToolIndRptBtwnDt"
+            class="com.teamcenter.aplmenu.reports.tm_toolIndentReportBetweenDatesCaller">
+        </handler> 
+         <handler
+            commandId="UniqPrtListRpt"
+            class="com.teamcenter.aplmenu.reports.tm_UniqPartListReport">
+        </handler>
+        <handler
+            commandId="InputSheetGenMBOM"
+            class="com.teamcenter.aplmenu.handlers.tm_InputSheetGenMbomHandler">
+        </handler>
+        <handler
+            commandId="vclistrpt"
+            class="com.teamcenter.aplmenu.reports.tm_VCListReport">
+        </handler>
+        <handler
+            commandId="GMDMLRelrpt"
+            class="com.teamcenter.aplmenu.reports.tm_PartRelGMDMLRep">
+        </handler>
+        <handler
+            commandId="CADReport"
+            class="com.teamcenter.aplmenu.handlers.tm_CADPartReport">
+        </handler>
+         <handler
+            commandId="DMLISRpt"
+            class="com.teamcenter.aplmenu.reports.tm_DML_MIS_Report">
+        </handler>
+        
+        
+        <handler
+            commandId="MultiPartPOSAP"
+            class="com.teamcenter.aplmenu.reports.tm_MultiPartPoRpt">
+        </handler>
+        <handler
+            commandId="VCSORRpt"
+            class="com.teamcenter.aplmenu.reports.PartVCSORReport">
+        </handler>
+        <handler
+              class="com.teamcenter.aplmenu.handlers.tm_APLCreateModAssyCVHandler"
+              commandId="CreateModAssyCV">
+        </handler>
+        <handler
+            commandId="APL14Digit"
+            class="com.teamcenter.aplmenu.handlers.tm_APLAPL14DigitHandler">
+             <activeWhen>
+               	 	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+         </handler>
+        <handler
+              class="com.teamcenter.aplmenu.handlers.tm_MBOMCreateGroupPartHandler"
+              commandId="CreateGroupPrtMBOM">
+        </handler>
+        <handler
+              class="com.teamcenter.aplmenu.handlers.tm_StructureConfigurationHandler"
+              commandId="StructureConfig">
+        </handler>
+		<handler
+            commandId="FittedCabin"
+            class="com.teamcenter.aplmenu.handlers.tm_APLCreateD9Z01Handler">
+        </handler>    
+        <handler
+            commandId="MBOMAChk"
+            class="com.teamcenter.aplmenu.handlers.tm_ModularBOMAccChkHandler">
+        </handler>
+        
+         <!--  for Perform_Interplant_restructuring -->
+        
+        		<handler
+            commandId="Perform Interplant restructuring"
+            class="com.teamcenter.aplmenu.handlers.tm_Perform_Interplant_restructuring_Handler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>
+        
+        <handler
+            commandId="ADDULMChk"
+            class="com.teamcenter.aplmenu.handlers.tm_AddULMHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+        </handler>
+        <handler
+            commandId="F9X01 Restructuring"
+            class="com.teamcenter.aplmenu.handlers.tm_F9X01RestructuringHandler">
+        </handler>
+	        <handler
+            commandId="CabinKitRestr"
+            class="com.teamcenter.aplmenu.handlers.tm_CabinKitRestrHandler">
+        </handler>    
+	
+      </extension>
+      
+
+
+	<extension
+         point="org.eclipse.ui.menus">         
+        <!-- <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=APL">
+         <menu
+               label="STD"
+               mnemonic="D"
+               id="STD">
+            <separator
+                  name="STDGroup">
+            </separator>
+         </menu>
+        </menuContribution> -->
+
+		    <menuContribution
+            locationURI="menu:STD?after=additions">     
+            <menu
+               label="EPA"
+               mnemonic="D"
+			   icon="icons/EPAIcon.png"
+               id="EPA">              
+               <separator name="group1"/>                 
+                <command
+                  commandId="EPACreate"
+                  mnemonic="S"
+                   icon="icons/create_16.png"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+               <!--Start Added by Deepti TZ1.43 -->	
+                <command
+                  commandId="EPAPartTrnsf"
+                  mnemonic="S"
+                  icon="icons/translct.jpg" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <command
+                  commandId="UpdateEPAAttributesTracking"
+                  mnemonic="S"
+                  icon="icons/translct.jpg" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+               
+			    <!--<command
+                  commandId="EPAVldInVld"
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>-->
+                
+               <menu
+               label="Update EPA Details"
+               mnemonic="D"
+               icon="icons/edit-property.png" 
+               id="UpdEPA">              
+               <separator name="group1"/> 
+	               	<!--<command
+	                  commandId="EPACostSettlement"
+	                  mnemonic="S"
+	                  icon="icons/UpdateEpa.jpg"
+	                  id="com.teamcenter.rac.menus.mainCommand">
+	               </command>-->
+	                <!--
+		           <command
+	                  commandId="EPACustQty"
+	                  mnemonic="S"
+	                   icon="icons/EditEpaDet.jpg"
+	                  id="com.teamcenter.rac.menus.mainCommand">
+	               </command>--> <!--Deepti TZ1.53-->
+	               
+	               <command
+                  commandId="EPAAQStg1"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                  id="EPAAQStg1"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EPAAQStg1" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+                <command
+                  commandId="EPAAQStg2"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                   id="EPAAQStg2"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EPAAQStg2" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+               <command
+                  commandId="EPAMfgQATryout"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                  id="EPAMfgQATryout"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EPAMfgQATryout" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+               <command
+                  commandId="EPAAQStg3"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                  id="EPAAQStg3"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EPAAQStg3" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>              
+               
+               
+               <command
+                  commandId="EPASCMStage1"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                   id="EPASCMStage1"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EPASCMStage1" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+               <!--<command
+                  commandId="EPASPDConfirm"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+               <command
+                  commandId="EPASCMStg2"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>-->
+               
+               <command
+                  commandId="EPAMfgQty"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                  id="EPAMfgQty"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EPAMfgQty" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+               <command
+                  commandId="EPACQ"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                  id="EPACQ"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EPACQ" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+               <command
+                  commandId="EPAQA"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                   id="EPAQA"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EPAQA" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+               <command
+                  commandId="MBPADET"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                   id="MBPADET"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="MBPADET" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+               <command
+                  commandId="EPAECM"
+                  mnemonic="S"
+                  icon="icons/EditEpaDet.jpg"
+                  id="EPAECM"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="EPAECM" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+               </menu>
+               <command
+                  commandId="EPAViewProprty"
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+               <command
+                  commandId="FinalizeEPA"
+                  mnemonic="F"
+                  id="FinalizeEPA"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="FinalizeEPA" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+
+               <!--Added by Ritik Start AddValidInvalidEPA-->
+               
+               <command
+                  commandId="AddValidInvalidEPA"
+                  mnemonic="F"
+                  id="AddValidInvalidEPA"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="AddValidInvalidEPA" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+               
+                <!--Added by Ritik End AddValidInvalidEPA-->
+              
+           </menu>
+           
+           
+		<!-- Added by Dhanashri For Create PR Task TZ1.40 -->	
+		   <menu
+               label="PR Task"
+               mnemonic="D"
+			   icon="icons/Task.png" 
+               id="PR Task">              
+               <separator name="group1"/>                 
+                <command
+                  commandId="PRTaskCreate"
+                  mnemonic="S"
+				  icon="icons/create_16.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+           </menu>
+		  <!-- End of Code Added by Dhanashri For Create PR Task TZ1.40 -->	
+		  
+		  	<!-- Added by Hemal For Task PO Check TZ1.41 -->	
+		   <menu
+               label="PO Check"
+               mnemonic="D"
+			   icon="icons/reportapplication_16.png" 
+               id="TaskPOChk">              
+               <separator name="group1"/>                 
+                <command
+                  commandId="TaskPOCheck"
+                  mnemonic="S"
+				  icon="icons/reportapplication_16.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <command
+                  commandId="EPAPOCheck"
+                  mnemonic="S"
+				    icon="icons/reportapplication_16.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+           </menu>
+		  <!-- End of Code Added by Hemal For Task PO Check TZ1.41 -->	
+		
+		  <command
+                  commandId="CreateAMDMLForGMDML"
+                  mnemonic="S"
+				  icon="icons/new_change_16.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <command
+                  commandId="NONERCMetadatafrmTCE"
+                  mnemonic="S"
+				  icon="icons/edit-property.png" 
+                  id="com.teamcenter.rac.menus.mainCommand">
+            </command>
+             <command
+                  commandId="AmdenTableUpdate"
+                  mnemonic="S"
+				  icon="icons/edit-property.png" 
+                  id="AmdenTableUpdate"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="AmdenTableUpdate" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+            </command>
+   
+            <command
+                  commandId="abeyanceuser"
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+            
+		  	<!-- Added by Vishal  For AMDML for GMDML-->	
+		   
+		   
+		  <!-- End of Code Added by Vishal  For For AMDML for GMDML -->	
+		  <!-- added by sachin D -->
+		       <command
+                  commandId="CreateAMDMLForModules"
+                  mnemonic="S"
+				  icon="icons/new_change_16.png" 
+                  id="CreateAMDMLForModules"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="CreateAMDMLForModules" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+		  
+		   <command
+                  commandId="CarryoverStmpSTD"
+                  mnemonic="S"
+				  icon="icons/assembly.jpg"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+                
+		   <!-- start of Code Added by Muskan APL/STDS remarks Update TZ1.75 -->	 
+		   <command
+                  commandId="APLSTDR"
+                  mnemonic="S"
+				  icon="icons/edit-property.png"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+		   <!-- end of Code Added by Muskan APL/STDS remarks Update TZ1.75 -->
+		 
+		  <!-- Added by Dhanashri For Tryout TZ1.45 -->	
+		   <menu
+               label="TryOut"
+               mnemonic="D"
+               id="TryOutID">              
+               <separator name="group1"/>                 
+                
+				<command
+                  commandId="TryOutCreate"
+                  mnemonic="S"
+                  id="TryOutCreate"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="TryOutCreate" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+			   <command
+                  commandId="TryOutUpdate"
+                  mnemonic="S"
+                  id="TryOutUpdate"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="TryOutUpdate" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+               
+			   <command
+                  commandId="TryOutCancel"
+                  mnemonic="S"
+                  id="TryOutCancel"  style="push"> 				   
+					<visibleWhen
+							checkEnabled="false">
+							 <and>
+								<with
+									  variable="rac_command_suppression">
+								   <not>
+									  <iterate operator="or">
+													<equals value="TryOutCancel" />
+									  </iterate>
+								   </not>
+								</with>
+							 </and>
+					</visibleWhen>
+               </command>
+           </menu>
+		  <!-- End of Code Added by Dhanashri For Tryout TZ1.45 -->	
+		  
+		   <!-- Added by Deepti For SMDML TZ1.47 -->	
+		   <menu
+               label="STDSI Re-structuring"
+               mnemonic="D"
+               icon="icons/cmchntit.jpg"
+               id="STDSIRestructure">               
+                <command
+                  commandId="CreateSMDML"                 
+                  icon="icons/create.jpg" 
+                  mnemonic="S"                 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command> 
+               <command
+                  commandId="UpdateSMDML"                 
+                  icon="icons/edit-property.png" 
+                  mnemonic="S"                 
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <separator name="group3"/>  
+                <command
+                  commandId="AddPart_SM"
+                  icon="icons/assembly.jpg" 
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>               
+                <command
+                  commandId="CutPaste_SM"
+                  icon="icons/assembly.jpg" 
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               <command
+                  commandId="DeletePart_SM"
+                  icon="icons/assembly.jpg" 
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+                <command
+                  commandId="TransferPart_SM"
+                  icon="icons/translct.jpg" 
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>	
+                
+             </menu> 
+		  <!-- End of Code Added by SMDML For Tryout TZ1.47 -->	
+		  
+		</menuContribution>
+		
+         </extension> 
+
+		  <extension 
+	 		point="org.eclipse.ui.commands">
+	 		<command 
+				name="Create EPA" 
+				id="EPACreate"> 
+			</command>
+			<!--Start Added by Deepti TZ1.43 -->	
+			<command 
+				name="Transfer EPA Parts" 
+				id="EPAPartTrnsf"> 
+			</command>
+			
+			<command 
+				name="EPA View Properties" 
+				id="EPAViewProprty"> 
+			</command>			
+			<!--End Added by Deepti TZ1.43 -->	
+			
+			<command 
+				name="Finalize EPA" 
+				id="FinalizeEPA"> 
+			</command>
+            <!-- Added by Ritik start -->	
+				
+					<command 
+				name="Add ValidInvalid Part in EPA" 
+				id="AddValidInvalidEPA"> 
+			  </command>
+			  <!-- Added by Ritik end -->
+			
+			 
+			
+			<command 
+				name="Update EPA Attributes Tracking" 
+				id="UpdateEPAAttributesTracking"> 
+			</command>
+			<command 
+				name="Add Invalid Part Details" 
+				id="EPAVldInVld"> 
+			</command>
+		<!-- Added by Dhanashri For Create PR Task TZ1.40 -->	
+			<command 
+				name="Create PR Task" 
+				id="PRTaskCreate"> 
+			</command>	
+	     <!-- End of Added by Dhanashri For Create PR Task TZ1.40 -->	
+	     <!-- Added by Hemal For Task PO Check TZ1.41 -->	
+			<command 
+				name="Task PO Check" 
+				id="TaskPOCheck"> 
+			</command>	
+			<command 
+				name="EPA PO Check" 
+				id="EPAPOCheck"> 
+			</command>	
+			<!-- Addeded by VIshal for Creating AMDML -->
+	      <command 
+				name="Create AMDML For GMDML Dependency" 
+				id="CreateAMDMLForGMDML"> 
+		 </command>
+		 <command 
+				name="NONERC Metadata Stamping From TCE" 
+				id="NONERCMetadatafrmTCE"> 
+		 </command>
+		 <command 
+				name="Amden Table Update" 
+				id="AmdenTableUpdate"> 
+		 </command>
+		 
+		 <command 
+				name="Park Task To Abeyance User" 
+				id="abeyanceuser"> 
+			</command>
+		 
+		  <!-- added by sachind -->
+		 <command 
+				name="Create AMDML For RDE Modules" 
+				id="CreateAMDMLForModules"> 
+		 </command>
+	     <!-- End of Added by Dhanashri For Create PR Task TZ1.40 -->
+	     
+	     <command 
+				name="Carryover Part Stamping for STDSI" 
+				id="CarryoverStmpSTD"> 
+		 </command>
+		 
+		 
+		 
+		  <!-- start of Code Added by Muskan APL/STDS remarks Update TZ1.75 -->	
+	     
+	      <command 
+				name="APL/STDS remarks Update" 
+				id="APLSTDR"> 
+		 </command>
+		 <!-- End of Code Added by Muskan APL/STDS remarks Update TZ1.75 -->	
+		 
+		 
+	     <!-- Added by Dhanashri For TryOut TZ1.44 -->	
+			<command 
+				name="Create TryOut" 
+				id="TryOutCreate"> 
+			</command>	
+			<command 
+				name="Update TryOut" 
+				id="TryOutUpdate"> 
+			</command>	
+			<command 
+				name="Cancel TryOut" 
+				id="TryOutCancel"> 
+			</command>	
+	     <!-- End of Added by Dhanashri For TryOut TZ1.44 -->
+	     <!-- Added by Deepti For SMDML TZ1.47 -->	
+			
+			<command 
+				name="Create STD DML" 
+				id="CreateSMDML"> 
+			</command>
+			<command 
+				name="Update STD DML Info" 
+				id="UpdateSMDML"> 
+			</command>
+			<command 
+				name="Add Part In Structure" 
+				id="AddPart_SM"> 
+			</command>	
+			<command 
+				name="Cut and Paste Part In Structure" 
+				id="CutPaste_SM"> 
+			</command>	
+			<command 
+				name="Delete Part from Structure" 
+				id="DeletePart_SM"> 
+			</command>
+			<command 
+				name="Transfer SMDML Parts" 
+				id="TransferPart_SM"> 
+			</command>	
+			
+			
+	     <!-- End of Added by Deepti For SMDML TZ1.47 -->
+	     
+	      			
+			<!-- <command 
+				name="Customer Quality" 
+				id="EPACustQty">  
+			</command>--> <!--Deepti TZ1.53-->
+			
+			<command 
+				name="AQ to Declare Sample Development date" 
+				id="EPAAQStg1"> 
+			</command>
+			
+			<command 
+				name="TryOut Initiations" 
+				id="EPAAQStg2"> 
+			</command>
+			
+			
+			<command 
+				name="Manufacturing and Quality for VIN No Update" 
+				id="EPAMfgQATryout"> 
+			</command>
+			
+			<command 
+				name="ECM Trigger Implementation" 
+				id="EPAECM"> 
+			</command>
+			
+			<command 
+				name="Part Introduction Clearance" 
+				id="EPAAQStg3"> 
+			</command>
+			
+			<command 
+				name="Stock Control and Schdule" 
+				id="EPASCMStage1"> 
+			</command>
+			
+			<!--<command 
+				name="SPD Confirmation" 
+				id="EPASPDConfirm"> 
+			</command>
+			
+			<command 
+				name="SCM-Stage2" 
+				id="EPASCMStg2"> 
+			</command>-->
+			
+			<command 
+				name="Mfg SOP confirmation" 
+				id="EPAMfgQty"> 
+			</command>
+			
+			<command 
+				name="VCG-CQ for SOP confirmation" 
+				id="EPACQ"> 
+			</command>
+			
+			<command 
+				name="MBPA Release" 
+				id="EPAQA"> 
+			</command>
+			
+			<command 
+				name="Update MBPA Description" 
+				id="MBPADET"> 
+			</command>
+			
+			<command 
+				name="VC Restructuring" 
+				id="VCInterface"> 
+		 </command>
+		 <command 
+                name="VC Restructuring Automation" 
+                id="VC_restructuring_automation"> 
+         </command>
+		 
+	     <command 
+				name="Delete Design Revision" 
+				id="deleteDesignRevision"> 
+		 </command>
+	      
+		</extension>  
+		
+
+	<extension
+         point="org.eclipse.ui.menus">         
+        <!-- <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=APL">
+         <menu
+               label="STD"
+               mnemonic="D"
+               id="STD">
+            <separator
+                  name="STDGroup">
+            </separator>
+         </menu>
+        </menuContribution> -->
+
+		<menuContribution
+            locationURI="menu:Reports?after=additions">     
+             <menu
+		       label="APL Reports"
+		       mnemonic="D"
+		       id="APLReports">              
+		       <separator name="group9"/>  
+
+		       <command 
+		       commandId="CommonReportDialog" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       
+		       <command 
+		       commandId="DMLBWReport" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       
+		       <command 
+		       commandId="BOMImplosion" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       
+		       <!-- <command 
+		       commandId="GentplRpt" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       <command 
+		       commandId="SourceListRpt" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command> 
+			    <command 
+		       commandId="ActPlnRpt" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command> 
+		       -->
+		       <command
+                  commandId="DMLIMPLRPT"
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+               <command
+                  commandId="STDEXCPRPT"
+                  mnemonic="D"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+                <command
+                  commandId="MULPRTIMPLRPT"
+                  mnemonic="P"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+               <command
+                  commandId="PRGCODERPT"
+                  mnemonic="V"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+               
+               <!--Start For Module comprision Report -->
+				 <command
+                  commandId="MDLCPRRPT"
+                  mnemonic="S"
+                  id="com.teamcenter.rac.menus.mainCommand">
+               </command>
+			     <!--Start For EBOM-MBOM Report -->	
+		       <command 
+		       commandId="EMBOMCRpt" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command> 
+		       <!--End For EBOM-MBOM Report -->	
+		       <command 
+		       commandId="TryBtwnDtRpt" 
+		       mnemonic="S"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       <command 
+		       commandId="TryAnaWiseRpt" 
+		       mnemonic="TA"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       
+		       <command 
+		       commandId="SMDMLBOMRestrRpt" 
+		       mnemonic="SB"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       
+		       
+		        <command 
+		       commandId="APLDMLRestructuringRpt" 
+		       mnemonic="AR"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+
+		       
+		       <command 
+		       commandId="SMDMLDtWiseRpt" 
+		       mnemonic="SD"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       
+		       
+		       
+		       
+		        <command 
+		       commandId="com.teamcenter.aplmenu.reports.tm_GmDmlReportHandler3" 
+		       mnemonic="SD"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>	
+		       
+		       
+		       
+		       <command 
+		       commandId="ToolIndRpt" 
+		       mnemonic="TI"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       <command 
+		       commandId="ToolIndCstEstRpt" 
+		       mnemonic="TC"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       <command 
+		       commandId="ToolIndRptBtwnDt" 
+		       mnemonic="TD"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		        <command 
+		       commandId="UniqPrtListRpt" 
+		       mnemonic="UPL"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		        <command 
+		       commandId="InputSheetGenMBOM" 
+		       mnemonic="IPSheetGen"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		        <command 
+		       commandId="vclistrpt" 
+		       mnemonic="VCR"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		        <command 
+		       commandId="GMDMLRelrpt" 
+		       mnemonic="GMR"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		        <command 
+		       commandId="CADReport" 
+		       mnemonic="CAD"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       <command 
+		       commandId="DMLISRpt" 
+		       mnemonic="DLR"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       <command 
+		       commandId="MultiPartPOSAP" 
+		       mnemonic="MPP"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		        <command 
+		       commandId="VCSORRpt" 
+		       mnemonic="VcSor"
+		       id="com.teamcenter.rac.menus.mainCommand">  
+		       </command>
+		       		    
+		   </menu> 	           
+		</menuContribution>          
+         </extension> 
+
+		 <extension
+         	point="org.eclipse.ui.menus">
+         	<menuContribution
+            	locationURI="menu:Queryp?after=additions">
+               		<menu
+                  		label="ALL Parts">
+               			<command
+                     		  commandId="com.teamcenter.rac.search.parameterizedsearch"
+                     		id="tm.teamcenter.ckd.module.menus.All_PartsqueryCommand"
+                    		mnemonic="S">
+                  			<parameter
+                        		name="searchName"
+                        		value="All_Parts">
+                  </parameter>
+               </command>
+            </menu>
+			</menuContribution>          
+         </extension>
+
+       <extension
+         point="org.eclipse.ui.handlers">
+
+		<handler
+            commandId="EPACreate"
+            class="com.teamcenter.aplmenu.handlers.tm_STDCreateEPAHandler">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="UpdateEPAAttributesTracking"
+            class="com.teamcenter.aplmenu.handlers.tm_UpdateEPAAttributesTrackingHandler">
+              
+        </handler>
+        
+        <!--Start Added by Deepti TZ1.43 -->	
+        <handler
+            commandId="EPAPartTrnsf"
+            class="com.teamcenter.aplmenu.views.tm_STDEPAPrtTransferDialog">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="EPAViewProprty"
+            class="com.teamcenter.aplmenu.views.tm_STDEPAViewProprtyDialog">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="FinalizeEPA"
+            class="com.teamcenter.aplmenu.handlers.tm_FinalizeEPAHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+         <!--End Added by Deepti TZ1.43 -->	
+
+         		 <!--Added by Ritik Start AddValidInvalidEPA-->	 
+         
+               <handler
+            commandId="AddValidInvalidEPA"
+            class="com.teamcenter.aplmenu.handlers.tm_addValidInvalidEPA">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+
+         <!-- Added by Ritik End --> 
+         
+		 <handler
+            commandId="EPAVldInVld"
+            class="com.teamcenter.aplmenu.handlers.tm_STDEPAVldInVldPrtDtls">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+                   
+		<!-- Added by Dhanashri For Create PR Task TZ1.40 -->	
+			<handler
+            commandId="PRTaskCreate"
+            class="com.teamcenter.aplmenu.handlers.tm_STDCreatePRTaskHandler">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLDMLRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+	<!-- End Of Code Added by Dhanashri For Create PR Task TZ1.40 -->
+	<!-- Added by Dhanashri For Task PO Check TZ1.41 -->	
+			<handler
+            commandId="TaskPOCheck"
+            class="com.teamcenter.aplmenu.actions.tm_STDPOCheckAction">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_APLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+         <handler
+            commandId="EPAPOCheck"
+            class="com.teamcenter.aplmenu.actions.tm_STDEPAPOCheckAction">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+	<!-- End Of Code Added by Hemal For Task PO Check TZ1.41 -->	
+	<!--  Code Added by Vishal for AMDML for GMDML-->
+	
+	   <handler
+            commandId="CreateAMDMLForGMDML"
+            class="com.teamcenter.aplmenu.actions.tm_STDAMDMLCreateGMDML">
+        </handler> 
+	   <handler
+                  commandId="NONERCMetadatafrmTCE"
+                  class="com.teamcenter.aplmenu.views.tm_NONERCMetaDataFrmTCE">
+       </handler> 
+       <handler
+                  commandId="AmdenTableUpdate"
+                  class="com.teamcenter.aplmenu.handlers.tm_UpdAmdenTblHndlr">
+       </handler>
+       
+       <handler
+            commandId="abeyanceuser"
+            class="com.teamcenter.aplmenu.handlers.tm_abeyanceuser">
+        </handler>	 <!--  End of Code Added by Vishal for AMDML for GMDML-->
+	 
+	  <!-- added by sachind -->
+	    <handler
+            commandId="CreateAMDMLForModules"
+            class="com.teamcenter.aplmenu.actions.tm_STDAMDMLCreateModules">
+        </handler> 
+        
+        <!--DML IMPL..............................................................-->	
+        <handler
+            commandId="DMLIMPLRPT"
+            class="com.teamcenter.aplmenu.handlers.tm_DMLImplosionRPTHandler">
+        </handler> 
+        
+        <handler
+            commandId="STDEXCPRPT"
+            class="com.teamcenter.aplmenu.handlers.tm_StdPrtExcpRptHandler">
+        </handler> 
+        
+        <handler
+            commandId="MULPRTIMPLRPT"
+            class="com.teamcenter.aplmenu.handlers.tm_MulPartImplRptHandler">
+        </handler> 
+        
+        <handler
+            commandId="PRGCODERPT"
+            class="com.teamcenter.aplmenu.handlers.tm_ProjCodeMapHandler">
+        </handler> 
+        
+		<!--.......................................................................-->
+	    <!--BOM Compare ERC APL..............................................................-->	
+        <handler
+            commandId="MDLCPRRPT"
+            class="com.teamcenter.aplmenu.handlers.tm_ModuleCmpreRPTHandler">
+        </handler> 
+	  <handler
+            commandId="CarryoverStmpSTD"
+            class="com.teamcenter.aplmenu.actions.tm_STDCarryOverPartStamp">
+        </handler> 
+         
+         <!--ADDED BY muskan  APL/STDS remarks Update TZ1.75 -->
+      <handler
+            commandId="APLSTDR"
+            class="com.teamcenter.aplmenu.handlers.tm_APL_STD_Remarks_Update">
+              <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+         <!--ADDED BY muskan APL/STDS remarks Update TZ1.75--> 
+         
+	
+		<!-- Added by Dhanashri For TryOut TZ1.44 -->	
+			<handler
+            commandId="TryOutCreate"
+            class="com.teamcenter.aplmenu.views.tm_STDTryoutCreateDialog">
+            </handler> 
+            
+            <handler
+            commandId="TryOutUpdate"
+            class="com.teamcenter.aplmenu.views.tm_STDTryoutUpdateDialog">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_TryoutRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+        
+         <handler
+            commandId="TryOutCancel"
+            class="com.teamcenter.aplmenu.views.tm_STDTryoutCancelDialog">
+               <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_TryoutRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler> 
+      <!-- End Of Added by Dhanashri For TryOut TZ1.44 -->	
+      
+     <!-- Added by Deepti For SMDML TZ1.47 -->	
+			<handler
+	            commandId="CreateSMDML"
+	            class="com.teamcenter.aplmenu.views.tm_STDDMLCreateDialog">
+            </handler>
+            
+            <handler
+            commandId="UpdateSMDML"
+            class="com.teamcenter.aplmenu.views.tm_STDDMLUpdateDialog">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_SMDMLRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+         </handler>
+          
+			<handler
+            commandId="AddPart_SM"
+            class="com.teamcenter.aplmenu.handlers.tm_AddPartHandler">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ItemRevision,Design Revision,T5_EE_PartRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+         </handler> 
+         <handler
+            commandId="CutPaste_SM"
+            class="com.teamcenter.aplmenu.handlers.tm_APLCutPastePartHandler">
+             <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="BOMLine">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+            commandId="DeletePart_SM"
+            class="com.teamcenter.aplmenu.handlers.tm_DeletePrtFrmStructHandler">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="BOMLine">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <handler
+            commandId="TransferPart_SM"
+            class="com.teamcenter.aplmenu.views.tm_SMDMLPartTransferDialog">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_SMDMLTaskRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+          
+        
+        <handler
+            commandId="EPACostSettlement"
+            class="com.teamcenter.aplmenu.views.tm_EPACostSettlement">
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+         <!--Deepti EPA TZ1.48--> <!--Deepti TZ1.53-->
+          <!--<handler
+            commandId="EPACustQty"
+            class="com.teamcenter.aplmenu.views.tm_EPACustomerQuality"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>-->
+        <!-- End Of Added by Deepti For SMDML TZ1.47 -->
+        <!-- Added by Deepti For EPA-MBPA TZ1.48 -->
+         <handler
+            commandId="EPAAQStg1"
+            class="com.teamcenter.aplmenu.views.tm_EPAAQStage1"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+         <handler
+            commandId="EPAAQStg2"
+            class="com.teamcenter.aplmenu.views.tm_EPAAQStage2"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        
+        <handler
+            commandId="EPAMfgQATryout"
+            class="com.teamcenter.aplmenu.views.tm_EPATryOutMfgQAFeedback"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="EPAAQStg3"
+            class="com.teamcenter.aplmenu.views.tm_EPAAQStage3"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="EPASCMStage1"
+            class="com.teamcenter.aplmenu.views.tm_EPASCMStage1"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+       <!-- <handler
+            commandId="EPASPDConfirm"
+            class="com.teamcenter.aplmenu.views.tm_EPASPDConfirmationDialog"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+         <handler
+            commandId="EPASCMStg2"
+            class="com.teamcenter.aplmenu.views.tm_EPASCMStg2Dialog"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>-->
+        
+        <handler
+            commandId="EPAMfgQty"
+            class="com.teamcenter.aplmenu.views.tm_EPAMfgQtyDialog"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="EPACQ"
+            class="com.teamcenter.aplmenu.views.tm_EPACQDialog"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="EPAQA"
+            class="com.teamcenter.aplmenu.views.tm_EPAQADialog"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="MBPADET"
+            class="com.teamcenter.aplmenu.handlers.tm_UpdateMBPADetailsHandler"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        
+        <handler
+            commandId="EPAECM"
+            class="com.teamcenter.aplmenu.views.tm_EPAECMDialog"> 
+            <activeWhen>
+               	<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="T5_EPARevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen> 
+        </handler>
+        <!-- End by Deepti For EPA-MBPA TZ1.48 -->
+        
+         
+      <!-- End Of Added by Deepti For SMDML TZ1.47 -->	
+      </extension>
+
+      <extension point="com.teamcenter.rac.util.extWizard"
+   		id="CreateEPAWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.EPA.CreateEPAWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_EPA"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.EPA.CreateEPATypeloader"
+			parentId="aplmenu.actions.create.EPA.CreateEPAWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef" 
+		id="CreateEPAWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.EPA.CreateEPAWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.EPA.CreateEPAWizard">
+		</extWizardRef>
+	</extension>
+	
+	<!--Added by Priti TZ1.45 -->
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="CreateAPLDMLWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.APLDML.CreateAPLDMLWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_APLDML"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.APLDML.CreateAPLDMLTypeloader"
+			parentId="aplmenu.actions.create.APLDML.CreateAPLDMLWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef"  
+		id="CreateAPLDMLWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.APLDML.CreateAPLDMLWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.APLDML.CreateAPLDMLWizard">
+		</extWizardRef>
+	</extension>
+	<!-- Added by Priti Ends TZ1.45-->
+	
+	<!--Added by sanket TZ1.45 -->
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="CreateMBOMDMLWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.MBOMDML.CreateMMDMLWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_MBOMDML"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.MBOMDML.CreateMMDMLTypeloader"
+			parentId="aplmenu.actions.create.MBOMDML.CreateMMDMLWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef"  
+		id="CreateMMDMLWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.MBOMDML.CreateMMDMLWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.MBOMDML.CreateMMDMLWizard">
+		</extWizardRef>
+	</extension>
+	<!-- Added by sanket Ends TZ1.45-->
+	<!--Added by Pravin TZ1.81 -->
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="CreateCTEDIntimationWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.CTEDInt.CreateCTEDIntimationWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_CTEDInd"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.CTEDInt.CreateCTEDIntimationTypeloader"
+			parentId="aplmenu.actions.create.CTEDInt.CreateCTEDIntimationWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef"  
+		id="CreateCTEDIntimationWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.CTEDInt.CreateCTEDIntimationWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.CTEDInt.CreateCTEDIntimationWizard">
+		</extWizardRef>
+	</extension>
+	<!-- Added by Pravin Ends TZ1.81-->
+	
+	<!--Added by Pravin TZ1.81 2 --> 
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="CreateWORKRECORDWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.WrkRd.CreateWORKRECORDWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_WrkRd"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.WrkRd.CreateWORKRECORDTypeloader"
+			parentId="aplmenu.actions.create.WrkRd.CreateWORKRECORDWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef"  
+		id="CreateWORKRECORDWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.WrkRd.CreateWORKRECORDWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.WrkRd.CreateWORKRECORDWizard">
+		</extWizardRef>
+	</extension>
+	<!-- Added by Pravin Ends TZ1.81-->
+	
+	<!--Added by Pravin TZ1.81 3 --> 
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="CreateINDUNITCTEDWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.IndUt.CreateINDUNITCTEDWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_IndUt"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.IndUt.CreateINDUNITCTETypeloader"
+			parentId="aplmenu.actions.create.IndUt.CreateINDUNITCTEDWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef"  
+		id="CreateINDUNITCTEWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.IndUt.CreateINDUNITCTEDWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.IndUt.CreateINDUNITCTEDWizard">
+		</extWizardRef>
+	</extension>
+	<!-- Added by Pravin Ends TZ1.81-->
+	
+	<!--Added by Pravin TZ1.81 4 --> 
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="CreateTrlReplNumlBookingWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.TICtr.CreateTrlReplNumlBookingWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_TICtr"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.TICtr.CreateINDUNITCTETypeloader"
+			parentId="aplmenu.actions.create.TICtr.CreateTrlReplNumlBookingWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef"  
+		id="CreateINDUNITCTEWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.TICtr.CreateTrlReplNumlBookingWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.TICtr.CreateTrlReplNumlBookingWizard">
+		</extWizardRef>
+	</extension>
+	<!-- Added by Pravin Ends TZ1.81-->
+	
+	
+	<!--Added by Deepti SMDML TZ1.47 -->
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="CreateSTDDMLWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.STDDML.CreateSTDDMLWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_SMDML"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.STDDML.CreateSTDDMLTypeloader"
+			parentId="aplmenu.actions.create.STDDML.CreateSTDDMLWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef"  
+		id="CreateSTDDMLWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.STDDML.CreateSTDDMLWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.STDDML.CreateSTDDMLWizard">
+		</extWizardRef>
+	</extension>
+	<!-- Added by Deepti SMDML TZ1.47-->
+	
+	<!--Added by Abhishek SMDML TZ1.80 -->
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="CreatePEPartWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.PEPart.CreatePEPartWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_PeDesign"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.PEPart.CreatePEPartTypeloader"
+			parentId="aplmenu.actions.create.PEPart.CreatePEPartWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef"  
+		id="CreatePEPartWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.PEPart.CreatePEPartWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.PEPart.CreatePEPartWizard">
+		</extWizardRef>
+	</extension>
+	<!-- Added by Deepti SMDML TZ1.47-->
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="CREATEMBPANONEPAWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="aplmenu.actions.create.MBPANONEPA.CREATEMBPANONEPAWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_MBPAM"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="aplmenu.actions.create.MBPANONEPA.CREATEMBPANONEPAloader"
+			parentId="aplmenu.actions.create.MBPANONEPA.CREATEMBPANONEPAWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef"  
+		id="CREATEMBPANONEPAWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="aplmenu.actions.create.MBPANONEPA.CREATEMBPANONEPAWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="aplmenu.actions.create.MBPANONEPA.CREATEMBPANONEPAWizard">
+		</extWizardRef>
+	</extension>
+
+</plugin>

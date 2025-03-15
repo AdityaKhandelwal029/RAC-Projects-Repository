@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension point="org.eclipse.ui.commands">
+		<category
+			name="My Teamcenter Category"
+			id="com.teamcenter.rac.tml.ui.commands.category">
+		</category>
+		<command
+			name="DML Property Updation"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.dml_non_cad_property">
+		</command>
+		<command
+			name="Create Architecture Module"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.ArchModCreate">
+		</command>
+		<command
+			name="Create Module"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.ModuleCreate">
+		</command>
+		<command
+			name="Create TML Part..."
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.CreatePart">
+		</command>
+		<command
+			name="Update Attributes (Non CAD)"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.NonCadUpdate">
+		</command>
+		<command
+			name="Create Uses Parts using CSV"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.usespartcsv">
+		</command>
+		<command
+			name="Update Program Scale"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.ProgramScale">
+		</command>
+		<command
+			name="Update NPI_Code"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.NPICodeUpdate">
+		</command>
+		<command
+			name="Update Colour Scheme"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.ColorSchemeUpdate">
+		</command>
+		<command
+			name="Refresh Colour Scheme"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.ColorSchemeRefresh">
+		</command>
+		<command
+			name="Copy Colour Scheme"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.CopyColorScheme">
+		</command>
+		<!--  <command
+			name="Create ERC Indent"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.IndentCreate">
+		</command> -->
+		<command
+			name="Roll Up Weight"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.WeightRollUp">
+		</command>
+		<command
+			name="Supplier Data Sharing"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.SupplierData">
+		</command>
+		<command
+			name="CAD Conversion"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.TmConversion">
+		</command>
+		<command
+			name="Vendor Management"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.VendorManagement">
+		</command>
+		<command
+			name="Color Scheme"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.ColorScheme">
+		</command>
+		<command
+            name="Update Interchangeability"
+            categoryId="com.teamcenter.rac.tml.ui.commands.category"
+            id="com.teamcenter.rac.tml.ui.commands.InterchangeUpdate">
+      </command>
+    <command
+          categoryId="com.teamcenter.rac.tml.ui.commands.category"
+          id="com.teamcenter.rac.tml.ui.commands.rmvchild"
+          name="Remove Child from Structure">
+    </command>
+    <command
+			name="Update Design Rules"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.DesignRuleUpdate">
+	</command>
+	<command
+			name="Update Barcode For T And T Parts"
+			categoryId="com.teamcenter.rac.tml.ui.commands.category"
+			id="com.teamcenter.rac.tml.ui.commands.BarCodeUpdate">
+		</command>
+			</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.dml_non_cad_property"
+			class="com.teamcenter.rac.tml.ui.handlers.non_cad_dml_attributes">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.ColorScheme"
+			class="com.teamcenter.rac.tml.ui.handlers.ColourschemeHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.VendorManagement"
+			class="com.teamcenter.rac.tml.ui.handlers.VendorMngtHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.ArchModCreate"
+			class="com.teamcenter.rac.tml.ui.handlers.CreateArchModHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.ModuleCreate"
+			class="com.teamcenter.rac.tml.ui.handlers.CreateModuleHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.CreatePart"
+			class="com.teamcenter.rac.tml.ui.handlers.PartCreationHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.usespartcsv"
+			class="com.teamcenter.rac.tml.ui.handlers.usespartcsvHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.NonCadUpdate"
+			class="com.teamcenter.rac.tml.ui.handlers.NonCadUpdateHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.ProgramScale"
+			class="com.teamcenter.rac.tml.ui.handlers.ProgScaleHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.NPICodeUpdate"
+			class="com.teamcenter.rac.tml.ui.handlers.NPICodeUpdateHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.ColorSchemeUpdate"
+			class="com.teamcenter.rac.tml.ui.handlers.UpdateColorSchemeHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.ColorSchemeRefresh"
+			class="com.teamcenter.rac.tml.ui.handlers.RefreshColorSchemeHandler">
+		</handler>	
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.CopyColorScheme"
+			class="com.teamcenter.rac.tml.ui.handlers.CopyColorSchemeHandler">
+		</handler>		
+		<!-- <handler
+			commandId="com.teamcenter.rac.tml.ui.commands.IndentCreate"
+			class="com.teamcenter.rac.tml.ui.ercindent.IndentCreationForm">
+		</handler> -->
+		 <handler
+            commandId="com.teamcenter.rac.tml.ui.commands.InterchangeUpdate"
+            class="com.teamcenter.rac.tml.ui.handlers.DisposalInfoHandler">
+       </handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.WeightRollUp"
+			class="com.teamcenter.rac.tml.ui.handlers.WeightRollUpHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.SupplierData"
+			class="com.teamcenter.rac.tml.ui.handlers.SupplierDataHandler">
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.TmConversion"
+			class="com.teamcenter.rac.tml.ui.handlers.TmConversionHandler">
+		</handler>
+  <handler
+        class="com.teamcenter.rac.tml.ui.handlers.RemoveBomline"
+        commandId="com.teamcenter.rac.tml.ui.commands.rmvchild">
+  </handler>
+  <handler
+		commandId="com.teamcenter.rac.tml.ui.commands.DesignRuleUpdate"
+		class="com.teamcenter.rac.tml.ui.handlers.DesignRuleUpdateHandler">
+		<enabledWhen>
+			<with variable="selection">
+				<count 
+					value="1">
+				</count>
+			</with>
+		</enabledWhen>
+	</handler>
+	<handler
+			commandId="com.teamcenter.rac.tml.ui.commands.BarCodeUpdate"
+			class="com.teamcenter.rac.tml.ui.handlers.BarCodeUpdateHandler">
+		</handler>
+	</extension>
+
+	<extension point="org.eclipse.ui.bindings">
+		<key
+			commandId="com.teamcenter.com.ArchitechtureMod.commands.ArchModCreate"
+			contextId="org.eclipse.ui.contexts.window"
+			sequence="M1+6"
+			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+		</key>
+	</extension>
+
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="menu:file.new?after=Design...">
+			<menu
+          id="file.new"
+         label="new">
+				<command
+					commandId="com.teamcenter.rac.tml.ui.commands.ModuleCreate"
+					mnemonic="M"
+					icon="icons/moduleIcon.png"
+					id="com.teamcenter.rac.tml.ui.menus.ModuleCreate">
+					<visibleWhen>
+						<and>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.teamcenter.rac.tml.ui.commands.ModuleCreate" />
+									</iterate>
+								</not>
+							</with>
+						</and>
+						<reference definitionId="com.teamcenter.rac.ui.inMainPerspective">
+						</reference>
+					</visibleWhen>
+				</command>
+				<command
+					commandId="com.teamcenter.rac.tml.ui.commands.ArchModCreate"
+					mnemonic="A"
+					icon="icons/archmoduleIcon.png"
+					id="com.teamcenter.rac.tml.ui.menus.ArchModCreate">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.ArchModCreate" />
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+				<command
+					commandId="com.teamcenter.rac.tml.ui.commands.CreatePart"
+					mnemonic="P"
+					icon="icons/tmlpart_16.png"
+					id="com.teamcenter.rac.tml.ui.menus.PartCreate">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.CreatePart" />
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+				<!-- <command
+					commandId="com.teamcenter.rac.tml.ui.commands.IndentCreate"
+					mnemonic="I"
+					icon="icons/indent.png"
+					id="com.teamcenter.rac.tml.ui.menus.IndentCreate">
+					<visibleWhen>
+						<and>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.teamcenter.rac.tml.ui.commands.IndentCreate" />
+									</iterate>
+								</not>
+							</with>
+						</and>
+						<reference definitionId="com.teamcenter.rac.ui.inMainPerspective">
+						</reference>
+					</visibleWhen>
+				</command> -->
+				
+				<command
+					commandId="com.teamcenter.rac.tml.ui.commands.VendorManagement"
+					mnemonic="V"
+					id="com.teamcenter.rac.tml.ui.menus.VendorManagement">
+					<visibleWhen>
+						<and>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.teamcenter.rac.tml.ui.commands.VendorManagement" />
+									</iterate>
+								</not>
+							</with>
+						</and>
+						<reference definitionId="com.teamcenter.rac.ui.inMainPerspective">
+						</reference>
+					</visibleWhen>
+				</command>
+
+			</menu>
+		</menuContribution>
+		<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Update Design Rules">
+			<menu label="Product Structure Action" mnemonic="U" id="tools.Product Structure Classes">
+				<command commandId="com.teamcenter.rac.tml.ui.commands.dml_non_cad_property" mnemonic="C"
+					icon="icons/save5.png"
+					id="com.teamcenter.rac.tml.ui.menus.dml_non_cad_property">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.dml_non_cad_property"/>
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+        <menuContribution
+			locationURI="menu:file.new?before=file.newEnd">
+			<menu
+				label="Colour Module Menu"
+				mnemonic="U"
+				id="File.Colour Module Menu">
+				<command
+					commandId="com.teamcenter.rac.tml.ui.commands.ColorScheme"
+					mnemonic="C"
+					icon="icons/document_16.png"
+					id="com.teamcenter.rac.tml.ui.menus.ColorScheme">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.ColorScheme" />
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+
+		<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Create LR/RH Relation">
+			<menu
+				label="Product Structure Action"
+				mnemonic="U"
+				id="tools.Product Structure Classes">
+				<command
+					commandId="com.teamcenter.rac.tml.ui.commands.NonCadUpdate"
+					mnemonic="C"
+					icon="icons/list_16.png"
+					id="com.teamcenter.rac.tml.ui.menus.NonCadUpdate">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.NonCadUpdate" />
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>	
+		<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Update Attributes (Non CAD)">
+			<menu label="Product Structure Action" mnemonic="U" id="tools.Product Structure Classes">
+				<command commandId="com.teamcenter.rac.tml.ui.commands.usespartcsv" mnemonic="C"
+					icon="icons/list_16.png"
+					id="com.teamcenter.rac.tml.ui.menus.usespartcsv">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.usespartcsv"/>
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+		<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Supplier Data Sharing">
+			<menu label="Product Structure Action" mnemonic="U" id="tools.Product Structure Classes">
+				<command commandId="com.teamcenter.rac.tml.ui.commands.InterchangeUpdate" mnemonic="C"
+					icon="icons/list_16.png"
+					id="com.teamcenter.rac.tml.ui.menus.InterchangeUpdate">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.InterchangeUpdate"/>
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>		
+		<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Supplier Data Sharing">
+			<menu
+				label="Product Structure Action"
+				mnemonic="U"
+				id="tools.Product Structure Classes">
+				<menu
+				   label="Color Scheme Menu"
+				   mnemonic="C"
+				   icon="icons/aliaslist_16.png"
+				   id="com.teamcenter.rac.tml.ui.menus.ColorSchemeMenu">
+					<command
+						commandId="com.teamcenter.rac.tml.ui.commands.ColorSchemeUpdate"
+						mnemonic="C"
+						icon="icons/aliaslist_16.png"
+						id="com.teamcenter.rac.tml.ui.menus.ColorSchemeUpdate">
+						<visibleWhen>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.teamcenter.rac.tml.ui.commands.ColorSchemeUpdate" />
+									</iterate>
+								</not>
+							</with>
+						</visibleWhen>
+					</command>
+					<command
+						commandId="com.teamcenter.rac.tml.ui.commands.ColorSchemeRefresh"
+						mnemonic="C"
+						icon="icons/aliaslist_16.png"
+						id="com.teamcenter.rac.tml.ui.menus.ColorSchemeRefresh">
+						<visibleWhen>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.teamcenter.rac.tml.ui.commands.ColorSchemeRefresh" />
+									</iterate>
+								</not>
+							</with>
+						</visibleWhen>
+					</command>
+					<command
+						commandId="com.teamcenter.rac.tml.ui.commands.CopyColorScheme"
+						mnemonic="C"
+						icon="icons/copy_16.png"
+						id="com.teamcenter.rac.tml.ui.menus.CopyColorScheme">
+						<visibleWhen>
+							<with variable="rac_command_suppression">
+								<not>
+									<iterate operator="or">
+										<equals value="com.teamcenter.rac.tml.ui.commands.CopyColorScheme" />
+									</iterate>
+								</not>
+							</with>
+						</visibleWhen>
+					</command>
+				</menu>
+			</menu>
+		</menuContribution>	
+		<menuContribution						
+			locationURI="menu:tools.Product Structure Classes?before=Create LR/RH Relation">
+			<menu
+				label="Product Structure Classes"
+				mnemonic="U"
+				id="tools.Product Structure Classes">
+				<command
+					commandId="com.teamcenter.rac.tml.ui.commands.SupplierData"
+					mnemonic="S"
+					icon="icons/T5_PackageIcon16.png"
+					id="com.teamcenter.rac.tml.ui.menus.SupplierData">
+					<visibleWhen>						
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.SupplierData" />
+								</iterate>
+							</not>
+						</with>						
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+
+				<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Supplier Data Sharing">
+			<menu label="Product Structure Action" mnemonic="U" id="tools.Product Structure Classes">
+				<command commandId="com.teamcenter.rac.tml.ui.commands.TmConversion" mnemonic="C"
+					icon="icons/cadconversion.png"
+					id="com.teamcenter.rac.tml.ui.menus.TmConversion">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.TmConversion"/>
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>	
+		
+		<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Update Interchangeability">
+			<menu
+				label="Product Structure Action"
+				mnemonic="U"
+				id="tools.Product Structure Classes">
+				<command
+					commandId="com.teamcenter.rac.tml.ui.commands.DesignRuleUpdate"
+					mnemonic="C"
+					icon="icons/list_16.png"
+					id="com.teamcenter.rac.tml.ui.menus.DesignRuleUpdate">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.DesignRuleUpdate" />
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+
+		<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Update Design Rules">
+			<menu label="Product Structure Action" mnemonic="U" id="tools.Product Structure Classes">
+				<command commandId="com.teamcenter.rac.tml.ui.commands.BarCodeUpdate" mnemonic="C"
+					icon="icons/list_16.png"
+					id="com.teamcenter.rac.tml.ui.menus.BarCodeUpdate">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.BarCodeUpdate"/>
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>	
+		
+		<menuContribution
+			locationURI="menu:tools?before=tools.CheckInOut">
+				<command commandId="com.teamcenter.rac.tml.ui.commands.WeightRollUp" mnemonic="C"
+					icon="icons/roll_up_16.png"
+					id="com.teamcenter.rac.tml.ui.menus.WeightRollUp">
+					<visibleWhen>
+					<and>
+						<reference definitionId="com.teamcenter.rac.pse.inMainView"></reference>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.WeightRollUp"/>
+								</iterate>
+							</not>
+						</with>
+						</and>
+					</visibleWhen>
+				</command>
+		</menuContribution>	
+		<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Update Design Rules">
+			<menu label="Product Structure Action" mnemonic="U" id="tools.Product Structure Classes">
+				<command commandId="com.teamcenter.rac.tml.ui.commands.ProgramScale" mnemonic="C"
+					icon="icons/list_16.png"
+					id="com.teamcenter.rac.tml.ui.commands.ProgramScale">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.ProgramScale"/>
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>	
+		<menuContribution
+			locationURI="menu:tools.Product Structure Action?after=Update Design Rules">
+			<menu label="Product Structure Action" mnemonic="U" id="tools.Product Structure Classes">
+				<command commandId="com.teamcenter.rac.tml.ui.commands.NPICodeUpdate" mnemonic="C"
+					icon="icons/list_16.png"
+					id="com.teamcenter.rac.tml.ui.commands.NPICodeUpdate">
+					<visibleWhen>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.tml.ui.commands.NPICodeUpdate"/>
+								</iterate>
+							</not>
+						</with>
+					</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+  <menuContribution
+        allPopups="false"
+        locationURI="menu:edit?after=org.eclipse.ui.edit.delete">
+     <command
+           commandId="com.teamcenter.rac.tml.ui.commands.rmvchild"
+           style="push">
+     </command>
+  </menuContribution>
+	</extension>
+
+<extension point="com.teamcenter.rac.util.extWizard"
+	id="VendorWizard"> 
+	<extWizard 
+		class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+		id="com.teamcenter.rac.tml.ui.create.Vendor.VendorCreateWizard">
+	</extWizard>
+</extension>
+
+<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+	<BOTypesLoader base_classes="Vendor"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="com.teamcenter.rac.tml.ui.create.Vendor.VendorCTypeloader"
+			parentId="com.teamcenter.rac.tml.ui.create.Vendor.VendorCreateWizard">
+	</BOTypesLoader>
+</extension>
+<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+	<BOTypesLoader base_classes="ManufacturerPart"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="com.teamcenter.rac.tml.ui.create.Vendor.VendorCTypeloader"
+			parentId="com.teamcenter.rac.tml.ui.create.Vendor.VendorCreateWizard">
+	</BOTypesLoader>
+</extension>
+
+<extension point="com.teamcenter.rac.util.extWizardRef" 
+		id="VendorWizardRef">
+	<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="com.teamcenter.rac.tml.ui.create.Vendor.VendorCreateWizard">
+	</extWizardRef>
+	<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="com.teamcenter.rac.tml.ui.create.Vendor.VendorCreateWizard">
+	</extWizardRef>
+</extension>
+
+	
+</plugin>

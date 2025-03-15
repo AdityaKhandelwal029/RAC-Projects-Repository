@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension point="org.eclipse.ui.commands">
+      <category
+            name="CM Category"
+            id="com.teamcenter.rac.tml.cm.commands.category">
+      </category>
+      <command
+            name="DML Addenda"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.tml.cm.commands.DMLAddenda">
+      </command>
+      <command
+            name="ERC DML CheckList"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.dmlChkLst">
+      </command>         
+      <command
+      		name="ERC DML"
+      		categoryId="com.teamcenter.rac.tml.cm.commands.category"
+      		id="com.teamcenter.rac.tml.cm.commands.newChangeWizard">
+      </command>
+      <command
+      		name="DCR"
+      		categoryId="com.teamcenter.rac.tml.cm.commands.category"
+      		id="com.teamcenter.rac.tml.cm.commands.newDCRChangeWizard">
+      </command>
+	  <command
+            name="Assign DML Change Review Board"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.tml.cm.commands.DMLCRBList">
+      </command>
+       <command
+            name="Assign DMU Reviewer to DML"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.tml.cm.commands.DMLDMUList">
+      </command>
+	  <command
+            name="Remove Part from GMDML"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.tml.cm.commands.DMLRMVPRT">
+      </command>
+	    <command
+            name="Remove Immaturated DR status Parts"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.tml.cm.commands.DMLRMVIMPRT">
+      </command>
+      <command
+      		name="Create ERC Task"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.createTask">
+      </command>
+      <command
+      		name="Abort ERC DML/DCR"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.abortDMLDCR">
+      </command>
+      <command
+      		name="Reassign Task"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.Reassign">
+      </command>
+           
+      <command
+      		name="Copy to Override"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.CopytoOverride">
+      </command>
+      <command
+      		name="Re-Run PoCheck"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.pocheck">
+      </command>
+      <command
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.updatePSCparts"
+            name="Update PSC Part">
+      </command>
+       <command
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.GMDRerun"
+            name="GMD-Rerun">
+      </command>
+       <command
+      		name="Relate to DML(Create Occurrence)"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.DMLPartRelUVFCreateForm">
+      </command>
+            
+      <command
+      		name="Relate to DML(Delete Module)"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.Deletemodule">
+      </command>
+      <command
+      		name="Copy ERC DML CheckList"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.cpydmlChkLst">
+      </command>
+      
+      
+       <command
+            name="Cut Objects"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.RemoveSolItemCommand">
+      </command>
+      <command id="com.teamcenter.rac.newBO" name="All Parts">
+      </command>      
+      <command id="com.teamcenter.rac.newProcess" name="Submit in Workflow">   
+      </command>      
+      <command id="com.teamcenter.rac.checkoutProperties" name="Checkout Properties">   
+      </command>
+      
+      <command
+      		name="Copy ERC DML"
+            categoryId="com.teamcenter.rac.tml.cm.commands.category"
+            id="com.teamcenter.rac.commands.cpyercdml">
+      </command>
+      
+   </extension>
+   <extension point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.teamcenter.rac.tml.cm.commands.DMLAddenda"
+            class="com.teamcenter.rac.tml.cm.handlers.DMLAddendaHandler">
+            <activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+								value="Folder">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+      </handler>
+	
+        <handler
+            commandId="com.teamcenter.rac.tml.cm.commands.newChangeWizard"
+            class="com.teamcenter.rac.tml.cm.handlers.NewChangeWizard">
+            <activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+								value="Folder">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+      </handler>
+	  
+      <handler
+            commandId="com.teamcenter.rac.tml.cm.commands.newDCRChangeWizard"
+            class="com.teamcenter.rac.tml.cm.handlers.NewDCRChangeWizard">
+            <activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+								value="Folder">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+      </handler>
+      <handler
+            class="com.teamcenter.rac.tml.cm.handlers.ERCCheckListHandler"
+            commandId="com.teamcenter.rac.commands.dmlChkLst">                
+            <activeWhen>
+				<iterate 
+				ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+								value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>        
+      </handler>
+	  <handler
+            class="com.teamcenter.rac.tml.cm.handlers.DMLCRBHandler"
+            commandId="com.teamcenter.rac.tml.cm.commands.DMLCRBList">                
+            <activeWhen>
+				<iterate 
+				ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+								value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>        
+      </handler>
+	  <handler
+            class="com.teamcenter.rac.tml.cm.handlers.DMLDMUHandler"
+            commandId="com.teamcenter.rac.tml.cm.commands.DMLDMUList">                
+            <activeWhen>
+				<iterate 
+				ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+								value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>        
+      </handler>
+	  <handler
+            class="com.teamcenter.rac.tml.cm.handlers.DMLRMVPRTHandler"
+            commandId="com.teamcenter.rac.tml.cm.commands.DMLRMVPRT">                
+            <activeWhen>
+				<iterate 
+				ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+								value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>        
+      </handler>
+	  
+	  	  <handler
+            class="com.teamcenter.rac.tml.cm.handlers.DMLRMVIMPRTHandler"
+            commandId="com.teamcenter.rac.tml.cm.commands.DMLRMVIMPRT">                
+            <activeWhen>
+				<iterate 
+				ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+								value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>        
+      </handler>
+	  
+      <handler
+			class="com.teamcenter.rac.tml.cm.handlers.ERCTaskHandler"
+			commandId="com.teamcenter.rac.commands.createTask">
+           	<activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass"
+								value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+		</handler>	
+		 <handler
+			commandId="com.teamcenter.rac.commands.abortDMLDCR"
+			class="com.teamcenter.rac.tml.cm.DMLAbort.Abort">
+           	<activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass"
+								value="ChangeRequestRevision,T5_GenDcrChngRepRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+		</handler>
+		<handler
+			commandId="com.teamcenter.rac.commands.Reassign"
+			class="com.teamcenter.rac.tml.cm.ReassignTask.ReAssTask">
+           	<activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass"
+								value="EPMTask">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+		</handler>
+		<handler
+			class="com.teamcenter.rac.tml.cm.handlers.CopytoOverrideHandler"
+			commandId="com.teamcenter.rac.commands.CopytoOverride">
+			<activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass"
+								value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+		</handler>
+		<handler
+			class="com.teamcenter.rac.tml.cm.handlers.PoCheckHandler"
+			commandId="com.teamcenter.rac.commands.pocheck">
+			<activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass"
+								value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>
+		</handler>
+  <handler
+        class="com.teamcenter.rac.tml.cm.handlers.UpdatePartRevisionPSC"
+        commandId="com.teamcenter.rac.commands.updatePSCparts">
+     <activeWhen>
+        <iterate
+              ifEmpty="false">
+           <and>
+              <adapt
+                    type="com.teamcenter.rac.kernel.TCComponent">
+                 <test
+                       property="com.teamcenter.rac.kernel.TCComponent.typeClass"
+                       value="ChangeRequestRevision">
+                 </test>
+              </adapt>
+           </and>
+        </iterate>
+     </activeWhen>
+  </handler>
+  <handler
+        class="com.teamcenter.rac.tml.cm.handlers.GMDRerunHandler"
+        commandId="com.teamcenter.rac.commands.GMDRerun">
+     <activeWhen>
+        <iterate
+              ifEmpty="false">
+           <and>
+              <adapt
+                    type="com.teamcenter.rac.kernel.TCComponent">
+                 <test
+                       property="com.teamcenter.rac.kernel.TCComponent.typeClass"
+                       value="ChangeRequestRevision">
+                 </test>
+              </adapt>
+           </and>
+        </iterate>
+     </activeWhen>
+  </handler>
+		<handler
+			class="com.teamcenter.rac.tml.cm.handlers.DMLPartRelUVFCreHandler"
+			commandId="com.teamcenter.rac.commands.DMLPartRelUVFCreateForm">
+			<enabledWhen>
+				<with variable="selection">
+					<count 
+						value="1">
+					</count>
+				</with>
+			</enabledWhen>
+		</handler>	
+		<handler
+			class="com.teamcenter.rac.tml.cm.handlers.DeletemoduleHandler"
+			commandId="com.teamcenter.rac.commands.Deletemodule">
+			<enabledWhen>
+				<with variable="selection">
+					<count 
+						value="1">
+					</count>
+				</with>
+			</enabledWhen>
+		</handler>	
+		<handler
+            class="com.teamcenter.rac.tml.cm.handlers.CopyCheckListHandler"
+            commandId="com.teamcenter.rac.commands.cpydmlChkLst">            
+            <activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>            
+      </handler>
+      <handler
+            commandId="com.teamcenter.rac.commands.RemoveSolItemCommand"
+            class="com.teamcenter.rac.tml.cm.handlers.RemSolutionItemHandler">
+      </handler>
+      <handler
+            class="com.teamcenter.rac.tml.cm.handlers.CopyErcDmlHandler"
+            commandId="com.teamcenter.rac.commands.cpyercdml">            
+            <activeWhen>
+				<iterate ifEmpty="false">
+					<and>
+						<adapt type="com.teamcenter.rac.kernel.TCComponent">
+							<test property="com.teamcenter.rac.kernel.TCComponent.typeClass" 
+							value="ChangeRequestRevision">
+							</test>
+						</adapt>
+					</and>
+				</iterate>
+			</activeWhen>            
+      </handler>
+	</extension>
+   <extension point="org.eclipse.ui.bindings">
+       <key
+            
+			commandId="com.teamcenter.rac.tml.cm.commands.DMLCRBList"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+	  <key
+            
+			commandId="com.teamcenter.rac.tml.cm.commands.DMLDMUList"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+	  <key
+            
+			commandId="com.teamcenter.rac.tml.cm.commands.DMLRMVPRT"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+	  <key
+            
+			commandId="com.teamcenter.rac.tml.cm.commands.DMLRMVIMPRT"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="com.teamcenter.rac.tml.cm.commands.DMLAddenda"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="com.teamcenter.rac.tml.cm.commands.newChangeWizard"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="com.teamcenter.rac.tml.cm.commands.newDCRChangeWizard"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+	  <key
+            
+			commandId="com.teamcenter.rac.tml.cm.commands.DMLCRBList"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+	  <key
+            
+			commandId="com.teamcenter.rac.tml.cm.commands.DMLDMUList"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+	 /* <key
+            
+			commandId="com.teamcenter.rac.tml.cm.commands.DMLRMVPRT"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>*/
+      <key
+            commandId="com.teamcenter.rac.commands.dmlChkLst"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+	  <key
+            commandId="com.teamcenter.rac.commands.abortDMLDCR"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="com.teamcenter.rac.commands.Reassign"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+       <key
+            commandId="com.teamcenter.rac.commands.createTask"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="com.teamcenter.rac.commands.CopytoOverride"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="com.teamcenter.rac.commands.pocheck"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="com.teamcenter.rac.commands.DMLPartRelUVFCreateForm"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>        
+      <key
+            commandId="com.teamcenter.rac.commands.Deletemodule"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>  
+      <key
+            commandId="com.teamcenter.rac.commands.cpydmlChkLst"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="com.teamcenter.rac.commands.cpyercdml"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+   </extension>
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution locationURI="menu:file.new?before=file.newStart">
+         <menu
+               label="Change Classes"
+               icon="icons/change_classes_16.png"
+               mnemonic="C"
+               id="com.teamcenter.rac.tml.cm.menus.ChangeClassMenu">
+               <separator name="ChangeClassGroup"/>
+            <command
+                  commandId="com.teamcenter.rac.tml.cm.commands.DMLAddenda"
+                  icon="icons/dmladdenda_16.png"
+                  mnemonic="A"
+                  id="com.teamcenter.rac.tml.dml.menus.DMLAddenda">
+                  	<visibleWhen>                  		
+                  		<and>
+                  			<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+                  			<with variable="rac_command_suppression">
+                  				<not>
+                  					<iterate operator="or">
+                  						<equals value="com.teamcenter.rac.tml.cm.commands.DMLAddenda"/>
+                  					</iterate>
+                  				</not>
+                  			</with>
+                  		</and>
+                  	</visibleWhen>
+            </command>
+			<command
+				commandId="com.teamcenter.rac.tml.cm.commands.DMLCRBList"
+				icon="icons/checklist_16.png"
+				mnemonic="A"
+				id="com.teamcenter.rac.tml.cm.commands.DMLCRBList">
+				<visibleWhen>
+                  		<and>
+                  			<reference 
+                  				definitionId="com.teamcenter.rac.ui.inMainPerspective">
+                  			</reference>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+			
+			<command
+				commandId="com.teamcenter.rac.tml.cm.commands.DMLDMUList"
+				icon="icons/checklist_16.png"
+				mnemonic="A"
+				id="com.teamcenter.rac.tml.cm.commands.DMLDMUList">
+				<visibleWhen>
+                  		<and>
+                  			<reference 
+                  				definitionId="com.teamcenter.rac.ui.inMainPerspective">
+                  			</reference>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+			<command
+				commandId="com.teamcenter.rac.tml.cm.commands.DMLRMVPRT"
+				icon="icons/checklist_16.png"
+				mnemonic="A"
+				id="com.teamcenter.rac.tml.cm.commands.DMLRMVPRT">
+				<visibleWhen>
+                  		<and>
+                  			<reference 
+                  				definitionId="com.teamcenter.rac.ui.inMainPerspective">
+                  			</reference>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+			
+			<command
+				commandId="com.teamcenter.rac.tml.cm.commands.DMLRMVIMPRT"
+				icon="icons/checklist_16.png"
+				mnemonic="A"
+				id="com.teamcenter.rac.tml.cm.commands.DMLRMVIMPRT">
+				<visibleWhen>
+                  		<and>
+                  			<reference 
+                  				definitionId="com.teamcenter.rac.ui.inMainPerspective">
+                  			</reference>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+            <command
+				commandId="com.teamcenter.rac.tml.cm.commands.newChangeWizard"
+				icon="icons/new_change_16.png"
+				mnemonic="D"
+				id="com.teamcenter.rac.tml.dml.menus.ERCDML">
+				<visibleWhen>
+                  		<and>
+                  			<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+                  				
+                  				<with variable="rac_command_suppression">
+                  				<not>
+                  					<iterate operator="or">
+                  						<equals value="com.teamcenter.rac.tml.cm.commands.newChangeWizard"/>
+                  					</iterate>
+                  				</not>
+                  			</with>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+			
+			 <command
+				commandId="com.teamcenter.rac.tml.cm.commands.newDCRChangeWizard"
+				icon="icons/new_change_16.png"
+				mnemonic="D"
+				id="com.teamcenter.rac.tml.dml.menus.ERCDML">
+				<visibleWhen>
+                  		<and>
+                  			<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+                  				
+                  				<with variable="rac_command_suppression">
+                  				<not>
+                  					<iterate operator="or">
+                  						<equals value="com.teamcenter.rac.tml.cm.commands.newDCRChangeWizard"/>
+                  					</iterate>
+                  				</not>
+                  			</with>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+			<command
+				commandId="com.teamcenter.rac.commands.dmlChkLst"
+				icon="icons/checklist_16.png"
+				mnemonic="H"
+				id="com.teamcenter.rac.tml.dml.menus.DMLCheckList">
+				<visibleWhen>
+                  		<and>
+                  			<reference 
+                  				definitionId="com.teamcenter.rac.ui.inMainPerspective">
+                  			</reference>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+			<command
+				commandId="com.teamcenter.rac.commands.abortDMLDCR"
+				icon="icons/checklist_16.png"
+				mnemonic="H"
+				id="com.teamcenter.rac.tml.dml.menus.DMLAbort">
+				<visibleWhen>
+                  		<and>
+                  			<reference 
+                  				definitionId="com.teamcenter.rac.ui.inMainPerspective">
+                  			</reference>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+			<command
+				commandId="com.teamcenter.rac.commands.Reassign"
+				icon="icons/checklist_16.png"
+				mnemonic="H"
+				id="com.teamcenter.rac.tml.dml.menus.Reassign">
+				<visibleWhen>
+                  		<and>
+                  			<reference 
+                  				definitionId="com.teamcenter.rac.ui.inMainPerspective">
+                  			</reference>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+			<command
+				commandId="com.teamcenter.rac.commands.createTask"
+				icon="icons/task.ico"
+				mnemonic="T"
+				id="com.teamcenter.rac.tml.dml.menus.createTask">
+				<visibleWhen>
+                  		<and>
+                  			<reference 
+                  				definitionId="com.teamcenter.rac.ui.inMainPerspective">
+                  			</reference>
+                  		</and>
+                  	</visibleWhen>
+			</command>		
+			<command
+				commandId="com.teamcenter.rac.commands.cpydmlChkLst"
+				icon="icons/checklist_16.png"
+				mnemonic="T"
+				id="com.teamcenter.rac.tml.dml.menus.cpychklst">
+				
+				<visibleWhen>                  		
+                  		<and>
+                  			<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+                  			<with variable="rac_command_suppression">
+                  				<not>
+                  					<iterate operator="or">
+                  						<equals value="com.teamcenter.rac.commands.cpydmlChkLst"/>
+                  					</iterate>
+                  				</not>
+                  			</with>
+                  		</and>
+                  	</visibleWhen>
+				
+				<!--
+				<visibleWhen>
+                  		<and>
+                  			<reference 
+                  				definitionId="com.teamcenter.rac.ui.inMainPerspective">
+                  			</reference>
+                  		</and>
+                </visibleWhen>
+                -->
+			</command>
+			<command
+				commandId="com.teamcenter.rac.commands.cpyercdml"
+				icon="icons/new_change_16.png"
+				mnemonic="C"
+				id="com.teamcenter.rac.tml.dml.menus.cpyercdml">
+				
+				<visibleWhen>                  		
+                  		<and>
+                  			<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+                  			<with variable="rac_command_suppression">
+                  				<not>
+                  					<iterate operator="or">
+                  						<equals value="com.teamcenter.rac.commands.cpyercdml"/>
+                  					</iterate>
+                  				</not>
+                  			</with>
+                  		</and>
+                  	</visibleWhen>
+			</command>
+         </menu>
+      </menuContribution>
+      <menuContribution locationURI="menu:edit?after=additions">                            
+			<command commandId="com.teamcenter.rac.commands.RemoveSolItemCommand" mnemonic="R"
+				icon="icons/cut_red_16.png"
+				id="com.teamcenter.rac.tml.cm.menus.RemoveSolItem">
+				<visibleWhen>
+					<and>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.commands.RemoveSolItemCommand"
+									/>
+								</iterate>
+							</not>
+						</with>
+					</and>
+					<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"> </reference>
+				</visibleWhen>
+			</command>
+               </menuContribution>  
+               
+        <menuContribution locationURI="menu:edit?before=additions">                            
+			<command commandId="com.teamcenter.rac.commands.CopytoOverride" mnemonic="R"
+				icon="icons/copy_16.png"
+				id="com.teamcenter.rac.tml.cm.menus.CopytoOverride">
+				<visibleWhen>
+					<and>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.commands.CopytoOverride"
+									/>
+								</iterate>
+							</not>
+						</with>
+					</and>
+					<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"> </reference>
+				</visibleWhen>
+			</command>
+               </menuContribution> 
+               
+               <menuContribution locationURI="menu:tools?after=tools.CheckInOut">
+               <menu
+				label="POCheck Menus"
+				mnemonic="U"
+				id="File.POCheck Menus">                           
+				<command commandId="com.teamcenter.rac.commands.pocheck" mnemonic="R"
+				icon="icons/revise_16.png"
+				id="com.teamcenter.rac.tml.cm.menus.pocheck">
+				<visibleWhen>
+					<and>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.commands.pocheck"
+									/>
+								</iterate>
+							</not>
+						</with>
+					</and>
+					<reference definitionId="com.teamcenter.rac.ui.inMainPerspective"> </reference>
+				</visibleWhen>
+			</command>
+    <command
+          commandId="com.teamcenter.rac.commands.updatePSCparts"
+          id="com.teamcenter.rac.commands.updatePSCparts"
+          label="Update PSC Revision"
+          style="push">
+    </command>
+    <command
+          commandId="com.teamcenter.rac.commands.GMDRerun"
+          id="com.teamcenter.rac.commands.GMDRerun"
+          label="GMD Re-Run Menu"
+          style="push">
+    </command>
+			</menu>
+               </menuContribution> 
+             
+          <menuContribution locationURI="menu:tools?after=tools.CheckInOut">
+         <menu
+				label="Relate to DML Menus"
+				mnemonic="U"
+				id="File.Relate to DML">                            
+			<command commandId="com.teamcenter.rac.commands.DMLPartRelUVFCreateForm" mnemonic="R"
+				icon="icons/copy_16.png"
+				id="com.teamcenter.rac.tml.cm.menus.DMLPartRelUVFCreateForm">
+				<visibleWhen>
+					<and>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.commands.DMLPartRelUVFCreateForm"
+									/>
+								</iterate>
+							</not>
+						</with>
+					</and>
+					<reference definitionId="com.teamcenter.rac.pse.inMainView"> </reference>
+				</visibleWhen>
+			</command>
+			</menu>
+               </menuContribution>  
+               
+              
+               <menuContribution locationURI="menu:tools?after=tools.CheckInOut">
+               <menu
+				label="Relate to DML Menus"
+				mnemonic="U"
+				id="File.Relate to DML">                          
+			<command commandId="com.teamcenter.rac.commands.Deletemodule" mnemonic="R"
+				icon="icons/copy_16.png"
+				id="com.teamcenter.rac.commands.Deletemodule">
+				<visibleWhen>
+					<and>
+						<with variable="rac_command_suppression">
+							<not>
+								<iterate operator="or">
+									<equals value="com.teamcenter.rac.commands.Deletemodule"
+									/>
+								</iterate>
+							</not>
+						</with>
+					</and>
+					<reference definitionId="com.teamcenter.rac.pse.inMainView"> </reference>
+				</visibleWhen>
+			</command>
+			</menu>
+               </menuContribution> 
+			
+			 <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+            <command commandId="com.teamcenter.rac.commands.abortDMLDCR">            
+                <visibleWhen>
+                    <and>
+                        <iterate ifEmpty="false">
+                            <adapt type="com.teamcenter.rac.kernel.TCComponent">
+                                <and>
+                                    <test
+                                        property="com.teamcenter.rac.kernel.TCComponent.typeClass"
+                                        value="ChangeRequestRevision,T5_GenDcrChngRepRevision">
+                                    </test>
+                                </and>
+                            </adapt>
+                        </iterate>
+                    </and>
+                </visibleWhen>
+             </command>
+		</menuContribution>
+		
+		<menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+            <command commandId="com.teamcenter.rac.commands.Reassign">            
+                <visibleWhen>
+                    <and>
+                        <iterate ifEmpty="false">
+                            <adapt type="com.teamcenter.rac.kernel.TCComponent">
+                                <and>
+                                    <test
+                                        property="com.teamcenter.rac.kernel.TCComponent.typeClass"
+                                        value="EPMTask">
+                                    </test>
+                                </and>
+                            </adapt>
+                        </iterate>
+                    </and>
+                </visibleWhen>
+             </command>
+		</menuContribution>
+                
+   </extension>
+   
+   <extension point="com.teamcenter.rac.util.extWizard"
+   		id="addendaWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="com.teamcenter.rac.tml.cm.create.dmladdenda.DMLAddendaWizard">
+   		</extWizard>
+   	</extension>
+     	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_DmlAddenda"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="com.teamcenter.rac.tml.cm.create.dmladdenda.AddendaTypeloader"
+			parentId="com.teamcenter.rac.tml.cm.create.dmladdenda.DMLAddendaWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef" 
+		id="addendaWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="com.teamcenter.rac.tml.cm.create.dmladdenda.DMLAddendaWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="com.teamcenter.rac.tml.cm.create.dmladdenda.DMLAddendaWizard">
+		</extWizardRef>
+	</extension>
+	
+	 <!-- Added by abhilash start -->	
+   	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="newChangeWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="com.teamcenter.rac.cm.newChangeWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="ChangeRequest"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="com.teamcenter.rac.tml.cm.create.ERCDML.CreateERCDMLTypeloader"
+			parentId="com.teamcenter.rac.cm.newChangeWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef" 
+		id="addendaWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="com.teamcenter.rac.cm.newChangeWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="com.teamcenter.rac.cm.newChangeWizard">
+		</extWizardRef>
+	</extension>
+	<!-- -->
+	<extension point="com.teamcenter.rac.util.extWizard"
+   		id="newChangeWizard">
+   		<extWizard 
+   			class="com.teamcenter.rac.ui.commands.create.bo.NewBOWizard"
+   			id="com.teamcenter.rac.cm.create.dcr.newChangeWizard">
+   		</extWizard>
+   	</extension>
+   	
+   	<extension point="com.teamcenter.rac.ui.commands.boTypesLoader">
+		<BOTypesLoader base_classes="T5_DChangeReport"
+			class="com.teamcenter.rac.ui.commands.create.bo.NewBOTypesLoader"
+			enableMRU="true"
+			id="com.teamcenter.rac.tml.cm.create.DCR.CreateDCRTypeloader"
+			parentId="com.teamcenter.rac.cm.create.dcr.newChangeWizard">
+		</BOTypesLoader>
+	</extension>
+	
+	<extension point="com.teamcenter.rac.util.extWizardRef" 
+		id="addendaWizardRef">
+		<extWizardRef
+			ordinal="100"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.BOTypePage"
+			wizardId="com.teamcenter.rac.cm.create.dcr.newChangeWizard">
+		</extWizardRef>
+		<extWizardRef
+			ordinal="200"
+			pageId="com.teamcenter.rac.ui.commands.create.bo.CreatePropsPage"
+			wizardId="com.teamcenter.rac.cm.create.dcr.newChangeWizard">
+		</extWizardRef>
+	</extension>
+	<!-- Added by abhilash end -->	
+</plugin>
